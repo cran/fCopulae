@@ -16,7 +16,7 @@
 
 # Copyrights (C)
 # for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
+#   1999 - 2008, Diethelm Wuertz, Rmetrics Foundation, GPL
 #   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
 #   info@rmetrics.org
 #   www.rmetrics.org
@@ -28,19 +28,10 @@
 
 
 ################################################################################
-# TAIL DEPENDENCE ESTIMATOR 
-#   derived from the "Mixed Gumbel-SurvivalGumbel-Normal Copula" approach
-#   supported Marginals: Normal, NIG and Generalized Hyperbolic Student-t
-
-
-################################################################################
-# FUNCTION:                    GUMBEL COPULA:
-#  .rgumbelCopula               Generates fast Gumbel copula random variates
-#  .dgumbelCopula               Computes Gumbel copula probability
-#  .pgumbelCopula               Computes Gumbel copula probability
 # FUNCTION:                    MIXED GUMBEL-SURVIVALGUMBEL-NORMAL COPULA:
 #  .rgsgnormCopula              Generates G-SG-NORM copula random variates
 #  .dgsgnormCopula              Computes G-SG-NORM copula probability
+# FUNCTION:                    MIXED G-SG-NORM COPULA FIT:
 #  .gsgnormCopulaFit            Computes G-SG-NORM copula probability
 # FUNCTION:                    NON-PARAMETRIC TAIL DEPENDECY ESTIMATOR:
 #  .cfgTDE                      Estimates non-parametrically tail dependence
@@ -52,111 +43,55 @@
 
 
 ################################################################################
-# Gumbel Copula
+# TAIL DEPENDENCE ESTIMATOR 
+#   derived from the "Mixed Gumbel-SurvivalGumbel-Normal Copula" approach
+#   supported Marginals: Normal, NIG and Generalized Hyperbolic Student-t
 
-
-.rgumbelCopula =
-function(n, alpha = 2)
-{   # A function implemented by Diethelm Wuertz
+ 
+.rgsgnormCopula <- 
+    function(n = 1000, alpha = c(2, 2), rho = 0, weights = c(1/3, 1/3))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
-    #   Generates fast Gumbel copula random variates
+    #   Computes RVs from a mixed Gumbel-SurvivalGumbel-Normal Copula
     
     # Arguments:
-    
-    # FUNCTION:
-    
-    # RVs:
-    dim = 2
-    theta <- runif(n, 0, pi)
-    w <- rexp(n)
-    b = 1/alpha
-    a <- sin((1-b)*theta)*(sin(b*theta))^(b/(1-b))/(sin(theta))^(1/(1-b))
-    fr = (a/w)^((1-b)/b)
-    fr <- matrix(fr, nrow = n, ncol = dim)
-    val <- matrix(runif(dim * n), nrow = n)
-    s = -log(val)/fr
-    ans = exp(-s^(1/alpha))
-    
-    control = list(alpha = alpha, copula = "archm", type = "gumbel")
-    attr(ans, "control") <- unlist(control)
-    
-    # Return Value:
-    ans
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-.dgumbelCopula = 
-function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
-{   # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Computes Bivariate Gumbel Copula Density
-    
-    # FUNCTION:
-    
-    # Conveniance Wrapper:
-    ans = darchmCopula(u, v, alpha, type = "4", output = output)
-    
-    # Return Value:
-    ans
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-.pgumbelCopula = 
-function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
-{   # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Computes Bivariate Gumbel Copula Probability
-    
-    # FUNCTION:
-    
-    # Conveniance Wrapper:
-    ans = parchmCopula(u, v, alpha, type = "4", output = output)
-    
-    # Return Value:
-    ans
-}
- 
-    
-################################################################################
-# Mixed Gumbel-SurvivalGumbel-Normal Copula
-
-
-.rgsgnormCopula = 
-function(n = 1000, alpha = c(2, 2), rho = 0, gamma = c(0.5, 0.5))
-{   # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Computes RVs from a mixed GSG copula
+    #   n - an integer value, the number of random variates to be
+    #       generated.
+    #   alpha - a numeric vector with two entries. The first denotes 
+    #       the parameter value of alpha for the Gumbel copula, and
+    #       the second for the Survival Gumbel Copula.
+    #   rho - a numeric value denoting the correlation parameter for
+    #       the normal copula.
+    #   weights - a numeric vector with two entries. The first denotes 
+    #       the weight of the Gumbel copula, and the second the weight
+    #       of the Survival Gumbel Copula. The weight for the normal
+    #       copula is evaluated by 1 - sum(weights).
     
     # Example:
     #   .rgsgnormCopula(20)
     
     # FUNCTION:
-        
-    # Upper Gumbel = 1 , Lower Gumbel = 2, t = 3:
-    n1 = round(gamma[1]*n)
-    n2 = n - n1
-    n1 = round(gamma[2]*n1)
-    n2 = round(gamma[2]*n2)
-    n3 = n - n1 - n2
     
+    # Checking:
+    stopifnot(any(weights >= 0))
+    stopifnot(sum(weights) <= 1)
+       
+    # Upper Gumbel = 1 , Lower Gumbel = 2, t = 3:
+    weights = c(weights, 1-sum(weights))
+    N = round(n*weights[1:2])
+    N = c(N, n-sum(N))
+       
     # Random Variates:
     r = rbind(
-        if (n1 > 0) .rgumbelCopula(n1, alpha[1]),
-        if (n2 > 0) 1-.rgumbelCopula(n2, alpha[2]),
-        if (n3 > 0) rellipticalCopula(n3, rho, type = "norm") )
+        if (N[1] > 0) rgumbelCopula(N[1], alpha[1]),
+        if (N[2] > 0) 1-rgumbelCopula(N[2], alpha[2]),
+        if (N[3] > 0) rellipticalCopula(N[3], rho, type = "norm") )
     index = sample(1:n)
     ans = r[index, ]
-    N = c(n, n1, n2, n3)
+    
+    N = c(n, N)
     names(N) = c("n", "n1", "n2", "n3")
     attr(ans, "control")<-N
     
@@ -168,15 +103,17 @@ function(n = 1000, alpha = c(2, 2), rho = 0, gamma = c(0.5, 0.5))
 # ------------------------------------------------------------------------------
 
 
-.dgsgnormCopula = 
-function(u = 0.5, v = u, alpha = c(2, 2), rho = 0, gamma = c(0.5, 0.5))
-{   # A function implemented by Diethelm Wuertz
+.dgsgnormCopula <- 
+    function(u = 0.5, v = u, alpha = c(2, 2), rho = 0, weights = c(1/3, 1/3),
+    output = c("vector", "list"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
-    #   Computes mixed GSG copula density
+    #   Computes mixed Gumbel-SurvivalGumbel-Normal Copula density
     
     # Example:
-    #   .dgsgnormCopula(grid2d()$x, grid2d()$y)
+    #   .perspPlot(.dgsgnormCopula(u = grid2d()$x, v = grid2d()$y, output = "list"))
    
     # FUNCTION:
     
@@ -190,28 +127,34 @@ function(u = 0.5, v = u, alpha = c(2, 2), rho = 0, gamma = c(0.5, 0.5))
         u = u[, 2]
     }
     
-    # Mix Gumbel + Survival Gumbel:
-    dCopula1 = .dgumbelCopula(u, v, alpha[1], output = "list")
-    dCopula2 = .dgumbelCopula(1-u, 1-v, alpha[2], output = "list")
-    dCopula12 = dCopula1
-    dCopula12$z = gamma[1]*dCopula1$z + (1-gamma[1])*dCopula2$z
+    # Match Arguments:
+    output = match.arg(output)
     
-    # Mix Gumbel/SurvivalGumbel + Student-t:
-    dCopula3 = dellipticalCopula(u, v, rho, type = "norm", output = "list")
-    dCopula123 = dCopula12
-    dCopula123$z = gamma[2]*dCopula12$z + (1-gamma[2])*dCopula3$z
-    ans = dCopula123
+    # Mixed Copula:
+    weights = c(weights, 1-sum(weights))
+    dCopula1 = dgumbelCopula(u, v, alpha[1])
+    dCopula2 = dgumbelCopula(1-u, 1-v, alpha[2])
+    dCopula3 = dellipticalCopula(u, v, rho, type = "norm")
+    c.uv = weights[1]*dCopula1 + weights[2]*dCopula2 + weights[3]*dCopula3
+    
+    attr(c.uv, "control") <- c(alpha = alpha, rho = rho, weights = weights)
+    if (output == "list") {
+        N = sqrt(length(u))
+        x = u[1:N]
+        y = matrix(v, ncol = N)[1, ]
+        c.uv = list(x = x, y = y, z = matrix(c.uv, ncol = N))
+    }
     
     # Return Value:
-    ans
+    c.uv
 }
 
 
 # ------------------------------------------------------------------------------
 
 
-.gsgnormCopulaFit =
-function(u, v =  NULL, trace = FALSE)
+.gsgnormCopulaFit <- 
+    function(u, v =  NULL, trace = FALSE)
 {   # A function implemented by Diethelm Wuertz
 
     # Description:
@@ -230,41 +173,77 @@ function(u, v =  NULL, trace = FALSE)
         U = u[, 1]
         V = u[, 2]
     }
+   
+    # From weights to gamma ...
+    #   G-SG-NORM: W1*Gumbel + W2*SurvivalGumbul + W3*NORM
+    #   with W3 = 1-W2-W3
+    # Transformation: Use Weights W1 and W3
+    #   gamma = c(gamma1, gamma2)
+    #       0 < gamma1 = W1/(1-W3) < 1
+    #       0 < gamma2 = 1-W3 < 1
+    #       W3 = 1-gamma2
+    #       W1 = gamma1*gamma2
+    #       W2 = gamma2*(1-gamma1)
+    # Note, this transformation has the advantage, that gamma1
+    #   and gamma2 are independent from each other.
      
     # Estimate Copula:
-    start = c(1.5, 1.5, 0, 1/3, 1/3)
+    start = c(alpha1 = 1.5, alpha2 = 1.5, rho = 0, gamma1 = 1/2, gamma2 = 1/2)
     fun = function(x, U, V, trace) 
     {
-        density = .dgsgnormCopula(u = U, v = V, 
-            alpha = x[1:2], rho = x[3], gamma = x[4:5])$z
+        alpha = x[1:2]
+        rho = x[3]
+        gamma = x[4:5]
+        weights = c(
+            weights1 = gamma[[1]]*gamma[[2]], 
+            weights2 = gamma[[2]]*(1-gamma[[1]]))
+        
+        density = .dgsgnormCopula(u = U, v = V, alpha, rho, weights = weights)
+            
         density = density[!is.na(density)]
         f = -mean( log(density) )
         if (trace) {
+            params = round(c(x[1:3], 
+                weights[1], weights[2], 1-weights[1]-weights[2]), 4)
+            names(params) = c("alpha1", "alpha2", "rho", 
+                "gumbel", "survival", "norm")
             cat("\n Objective Function Value:  ", -f)
-            cat("\n Parameter Estimates:       ",   
-                round(c(x[1:3], x[5]*x[4], x[5]*(1-x[4]), 1-x[5]), 4), "\n")
+            cat("\n Parameter Estimates:       ", params, "\n") 
+                
         }
         f
     }
 
     # Fit:
-    fit = nlminb(start = start, objective = fun, 
+    fit = nlminb(
+        start = start, objective = fun, 
         lower = c(  1,   1, -0.999, 0, 0), 
         upper = c(Inf, Inf,  0.999, 1, 1), U = U, V = V, trace = trace)
-        
+     
+    # Fitted Parameters:   
     param = fit$par
+    
+    # Named Parameters:
     alpha1 = param[1]
     alpha2 = param[2]
+    rho = param[3]
     gamma1 = param[4]
     gamma2 = param[5]
-    Upper = (gamma2*gamma1*(2 - 2^(1/alpha1)))[[1]]
-    Lower = (gamma2*(1-gamma1)*(2 - 2^(1/alpha2)))[[1]]
-    Param = c(param[1:3], param[5]*param[4], param[5]*(1-param[4]), 1-param[5])
-    names(Param) = c("alpha1", "alpha2", "rho", "gumbel", "survival", "norm")
-    Lambda = c(lower = Lower, upper = Upper)
+    
+    # Weights:
+    weights3 =  1-gamma2
+    weights1 = gamma1*gamma2
+    weights2 = gamma2*(1-gamma1)
+    
+    # Tail Coefficients
+    upperLambda = (weights1*(2 - 2^(1/alpha1)))[[1]]
+    lowerLambda = (weights2*(2 - 2^(1/alpha2)))[[1]]
+    params = c(param[1:3], param[5]*param[4], param[5]*(1-param[4]), 1-param[5])
+    names(params) = c("alpha1", "alpha2", "rho", "gumbel", "survival", "norm")
+    Lambda = c(lower = lowerLambda, upper = upperLambda)
       
     # Return Value:
-    list(param = Param, lambda = Lambda, fitted = fit$par)
+    list(param = params, lambda = Lambda, fitted = fit$par)
 }
 
 
@@ -272,9 +251,10 @@ function(u, v =  NULL, trace = FALSE)
 # Non-Parametric Tail Dependence Estimator
 
 
-.cfgTDE = 
-function(x, y)
-{   # A function implemented by Diethelm Wuertz
+.cfgTDE <- 
+    function(x, y)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Estimates non-parametrically tail dependency coefficient
@@ -310,9 +290,10 @@ function(x, y)
 # GSGNORM Parametric Tail Dependence Estimator
 
 
-.normDependencyFit = 
-function(x, doplot = TRUE, trace = TRUE)
-{   # A function implemented by Diethelm Wuertz
+.empiricalDependencyFit <- 
+    function(x, doplot = TRUE, trace = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Estimates tail dependency coefficients with Normal marginals
@@ -383,9 +364,84 @@ function(x, doplot = TRUE, trace = TRUE)
 # ------------------------------------------------------------------------------
 
 
-.nigDependencyFit = 
-function(x, doplot = TRUE, trace = TRUE)
-{   # A function implemented by Diethelm Wuertz
+.normDependencyFit <- 
+    function(x, doplot = TRUE, trace = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
+
+    # Description:
+    #   Estimates tail dependency coefficients with Normal marginals
+    
+    # Arguments:
+    #   x - a multivariate 'timeSeries' object
+    
+    # FUNCTION:
+    
+    # Settings: 
+    N = ncol(x)
+    lowerLambda = upperLambda = 0*diag(N)
+    assetsNames = colnames(x)
+    P = NULL
+    
+    for (i in 1:(N-1)) {
+        # First asset:
+        r1 = as.vector(x[, i])
+        fit1 = nFit(r1)
+        estim1 = fit1$estimate
+        p1 = pnorm(r1, estim1[1], estim1[2]) 
+        Main1 = assetsNames[i]
+        P = cbind(P, p1)
+        for (j in (i+1):N) 
+        {  
+            # Second asset:
+            r2 = as.vector(x[, j])
+            fit2 = nFit(r2) 
+            estim2 = fit2$estimate      
+            p2 = pnorm(r2, estim2[1], estim2[2]) 
+            Main2 = assetsNames[j]
+            
+            # Optional Plot:
+            if (doplot) 
+            {
+                # Plot Distribution:
+                MainR = paste("Distribution:", Main1, "-", Main2)
+                plot(r1, r2, pch = 19, main = MainR)
+                grid()
+                
+                # Plot Copula:
+                MainP = paste("Copula:", Main1, "-", Main2)
+                plot(p1, p2, pch = 19, main = MainP)
+                grid()
+            }
+            
+            # Fit GSG copula parameters:
+            fit = .gsgnormCopulaFit(u = p1, v = p2, trace = FALSE)
+            if (trace)
+                cat(assetsNames[c(i,j)], round(fit$lambda, 3), "\n")  
+            
+                # Compose lambda Matrix:
+            lowerLambda[i, j] = lowerLambda[j, i] = fit$lambda[1]
+            upperLambda[i, j] = upperLambda[j, i] = fit$lambda[2]
+        }
+    }
+    
+    # Result:
+    colnames(lowerLambda) = rownames(lowerLambda) = assetsNames
+    colnames(upperLambda) = rownames(upperLambda) = assetsNames
+    ans = list(lower = lowerLambda, upper = upperLambda)
+     
+    # Return Value:
+    ans 
+}
+
+
+# ------------------------------------------------------------------------------
+
+
+.nigDependencyFit <- 
+    function(x, doplot = TRUE, trace = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Estimates tail dependency coefficients with NIG marginals
@@ -448,9 +504,10 @@ function(x, doplot = TRUE, trace = TRUE)
 # ------------------------------------------------------------------------------
 
 
-.ghtDependencyFit = 
-function(x, doplot = TRUE, trace = TRUE)
-{   # A function implemented by Diethelm Wuertz
+.ghtDependencyFit <- 
+    function(x, doplot = TRUE, trace = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Estimates tail dependency coefficients with GH Student-t marginals
@@ -507,70 +564,6 @@ function(x, doplot = TRUE, trace = TRUE)
      
     # Return Value:
     ans 
-}
-  
-
-################################################################################
-# Examples
-
-
-if (FALSE) 
-{
-    require(fCopulae)
-    
-    # Simulated data:
-    x = .rnormCopula(1000, rho = 0.7)
-    .gsgnormCopulaFit(x, trace = TRUE)
-    
-    # LPP Portfolio:
-    require(fPortfolio)
-    data(LPP2005REC)
-    x = 100 * as.timeSeries(LPP2005REC)[, 1:6]
-    head(x)
-    
-    # Tail Dependency Estimation:
-    par(mfrow = c(2,2), cex = 0.7)   
-    ans = .nigDependencyFit(x) 
-    ans 
-    
-    #         Lower Upper
-    # SBI SPI 0     0 
-    # SBI SII 0.055 0 
-    # SBI LMI 0.064 0.069 
-    # SBI MPI 0     0 
-    # SBI ALT 0     0 
-    # SPI SII 0     0.064 
-    # SPI LMI 0     0.072 
-    # SPI MPI 0.352 0.214 
-    # SPI ALT 0.273 0.048 
-    # SII LMI 0.075 0 
-    # SII MPI 0     0.164 
-    # SII ALT 0     0.152 
-    # LMI MPI 0     0 
-    # LMI ALT 0     0 
-    # MPI ALT 0.124 0.012 
-    # 
-    # $lower
-    #            SBI       SPI        SII        LMI       MPI       ALT
-    # SBI 0.00000000 0.0000000 0.05524575 0.06369211 0.0000000 0.0000000
-    # SPI 0.00000000 0.0000000 0.00000000 0.00000000 0.3517273 0.2728653
-    # SII 0.05524575 0.0000000 0.00000000 0.07541669 0.0000000 0.0000000
-    # LMI 0.06369211 0.0000000 0.07541669 0.00000000 0.0000000 0.0000000
-    # MPI 0.00000000 0.3517273 0.00000000 0.00000000 0.0000000 0.1236074
-    # ALT 0.00000000 0.2728653 0.00000000 0.00000000 0.1236074 0.0000000
-    # 
-    # $upper
-    #            SBI        SPI       SII        LMI        MPI        ALT
-    # SBI 0.00000000 0.00000000 0.0000000 0.06935723 0.00000000 0.00000000
-    # SPI 0.00000000 0.00000000 0.0638653 0.07169038 0.21421052 0.04785965
-    # SII 0.00000000 0.06386530 0.0000000 0.00000000 0.16401986 0.15228270
-    # LMI 0.06935723 0.07169038 0.0000000 0.00000000 0.00000000 0.00000000
-    # MPI 0.00000000 0.21421052 0.1640199 0.00000000 0.00000000 0.01209013
-    # ALT 0.00000000 0.04785965 0.1522827 0.00000000 0.01209013 0.00000000
-
-    par(mfrow = c(1,1))
-    .assetsStarPlot(ans$lower, main = "Lower Tail Relations")
-    .assetsStarPlot(ans$upper, main = "Lower Tail Relations")
 }
 
 
