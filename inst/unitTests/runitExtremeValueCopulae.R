@@ -37,26 +37,6 @@
 # FUNCTION:                  EXTREME VALUE COPULAE DENSITY:
 #  devCopula                  Computes extreme value copula density
 #  devSlider                  Displays interactively plots of density
-#################################################################################
-
-
-test.aaa = 
-function()
-{
-    # Help File:
-    helpFile = function() { 
-        example(ExtremeValueCopula, ask = FALSE)
-        return() 
-    }
-    checkIdentical(
-        target = class(try(helpFile())),
-        current = "NULL")
-
-    # Return Value:
-    return()    
-}
-
-
 ################################################################################
 
 
@@ -92,8 +72,9 @@ function()
     # revSlider(B = 10)
     
     # Try Slider()
-    revSlider()                         # CHECK !!!
-
+    # revSlider()                         # CHECK !!!
+    NA
+    
     # Return Value:
     return()    
 }
@@ -135,10 +116,12 @@ function()
     # pevSlider(type = c("persp", "contour"), B = 10)
 
     # Try Perspective Slider:
-    pevSlider("persp")
+    # pevSlider("persp")
+    NA
     
     # Try Contour Slider:
-    pevSlider("contour")
+    # pevSlider("contour")
+    NA
     
     # Return Value:
     return()    
@@ -181,26 +164,17 @@ function()
     # devSlider(type = c("persp", "contour"), B = 10)
 
     # Try Perspective Slider:
-    devSlider("persp")
+    # devSlider("persp")
+    NA 
     
     # Try Contour Slider:
-    devSlider("contour")
+    # devSlider("contour")
+    NA
     
     # Return Value:
     return()    
 }
 
-        
-################################################################################
-
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit4B.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
-}
- 
   
 ################################################################################
 

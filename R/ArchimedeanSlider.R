@@ -28,82 +28,15 @@
 
 
 ################################################################################
-# FUNCTION:                  ARCHIMEDEAN COPULAE RANDOM VARIATES:
-#  rarchmCopula               Generates Archimedean copula random variates 
-#  rarchmSlider               Displays interactively archimedean probability
-#  .rNo1Copula                Generates rv's for copulae No 1
-#  .rNo2Copula                Generates rv's for copulae No 2
-# FUNCTION:                  ARCHIMEDEAN COPULAE PROBABILITY:
-#  parchmCopula               Computes Archimedean copula probability 
-#  parchmSlider               Displays interactively archimedean probability 
-#  .parchm1Copula              Utility Function
-#  .parchm2Copula              Utility Function
+# FUNCTION:                  ARCHIMEDEAN COPULAE SLIDERS:
+#  rarchmSlider               Displays interactively Archimedean probability
+#  parchmSlider               Displays interactively Archimedean probability 
 #  .parchmPerspSlider          Utility Function
 #  .parchmContourSlider        Utility Function
-# FUNCTION:                  ARCHIMEDEAN COPULAE DENSITY:
-#  darchmCopula               Computes Archimedean copula density 
 #  darchmSlider                Displays interactively archimedean density 
-#  .darchm1Copula              Utility Function
-#  .darchm2Copula              Utility Function
 #  .darchmPerspSlider          Utility Function
 #  .darchmContourSlider        Utility Function
-# FUNCTION:                  SPECIAL BIVARIATE COPULA:
-#  rgumbelCopula              Generates fast gumbel random variates
-#  pgumbelCopula              Computes bivariate Gumbel copula probability
-#  dgumbelCopula              Computes bivariate Gumbel copula density
 ################################################################################
-
-
-################################################################################
-#  rarchmCopula               Generates Archimedean copula random variates 
-#  .r1Copula                  Generates rv's for copulae No 1
-#  .r2Copula                  Generates rv's for copulae No 2
- 
-
-rarchmCopula =
-function(n, alpha = NULL, type = archmList())
-{   # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Generates Archimedean copula random variate
-    
-    # FUNCTION:
-    
-    # Type:
-    type = match.arg(type)
-    Type = as.integer(type)
-    
-    # Alpha:
-    if (is.null(alpha)) alpha = archmParam(type)$param
-    
-    # Check alpha:
-    check = archmCheck(alpha, type)
-    
-    if (Type == 1) {
-        # Use faster Algorithm:
-        ans = .rNo1Copula(n, alpha)
-    } else {
-        # Generate rv's for the remaining Copulae:
-        X = runif(n)
-        Y = runif(n)
-        t = .invK(Y, alpha, type)
-        U = .invPhi(X*.Phi(t, alpha, type), alpha, type)
-        V = .invPhi((1-X)*.Phi(t, alpha, type), alpha, type)
-        ans = cbind(U, V)
-        # Add Control Attribute:
-        colnames(ans) = NULL
-    }
-    
-    # Add Control List:
-    control = list(alpha = alpha[[1]], copula = "archm", type = type)
-    attr(ans, "control")<-unlist(control)
-    
-    # Return Value:
-    ans
-}
-
-
-# ------------------------------------------------------------------------------
 
 
 rarchmSlider =
@@ -172,157 +105,6 @@ function(B = 10)
 }
 
 
-# ------------------------------------------------------------------------------
-
-
-.rNo1Copula =
-function(n, alpha = NULL, alternative = FALSE, doplot = FALSE)
-{   # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Generates rv's for copula No 1
-    
-    # Default Parameter:
-    if (is.null(alpha)) alpha = archmParam(1)$param
-    
-    # Clayton Random Variate:
-    if (alternative) {
-        # Source: aas04.pdf
-        X = rgamma(n, 1/alpha)
-        V1 = runif(n)
-        U = (1-log(V1)/X)^(-1/alpha)
-        V2 = runif(n)
-        V = (1-log(V2)/X)^(-1/alpha)
-        ans = cbind(U, V)
-    } else {
-        # Source: armstrong03.pdf
-        U = runif(n)
-        W = runif(n)
-        # W = C(V|U) =>
-        V = ( W^(-alpha/(alpha+1)) * U^(-alpha) - U^(-alpha) + 1 )^(-1/alpha)
-        ans = cbind(U, V)
-    }   
-    
-    # Optional Plot:
-    if (doplot) {
-        plot(U, V, cex = 0.25, main = "Copula No. 1")
-    }
-    
-    # Add Attribute:
-    colnames(ans) = NULL
-    control = list(alpha = alpha[[1]], copula = "archm", type = "1")
-    attr(ans, "control")<-unlist(control)
-    
-    # Return Value:
-    ans
-}
-
-
-# ------------------------------------------------------------------------------
-
-
-.rNo2Copula = 
-function(n, alpha = NULL, doplot = FALSE)
-{   # A function implemented by Diethelm Wuertz
-
-    # HERE IS SOMETHING WRONG !!!!
-    
-    # Description:
-    #   Generates rv's for copula No 2
-    
-    # Source: armstrong03.pdf
-    
-    # Default Parameter:
-    if (is.null(alpha)) alpha = archmParam(2)$param
-    
-    # Random Variates:
-    U = runif(n)
-    W = runif(n)
-    
-    # W = C(V|U) =>
-    V = 1 - ( (1-U)^alpha * (W^(alpha/(1-alpha)) - 1 ) + 1 ) ^ (1/alpha)
-    ans = cbind(U, V)
-    
-    # Optional Plot:
-    if (doplot) {
-        plot(U, V, cex = 0.25, main = "Copula No. 2")
-    }
-    
-    # Add Attribute:
-    colnames(ans) = NULL
-    control = list(alpha = alpha[[1]], copula = "archm", type = "2")
-    attr(ans, "control")<-unlist(control)
-    
-    # Return Value:
-    ans
-}
-
-
-################################################################################
-# FUNCTION:                  ARCHIMEDEAN COPULAE PROBABILITY:
-#  parchmCopula               Computes Archimedean copula probability 
-#  parchmSlider               Displays interactively archimedean probability 
-#  .parchm1Copula              Utility Function
-#  .parchm2Copula              Utility Function
-#  .parchmPerspSlider          Utility Function
-#  .parchmContourSlider        Utility Function
-
-
-parchmCopula = 
-function(u = 0.5, v = u, alpha = NULL, type = archmList(),
-output = c("vector", "list"), alternative = FALSE )
-{   # A function implemented by Diethelm Wuertz
-
-    # Description:
-    #   Computes extreme value copula probability
-    
-    # Arguments:
-    #   u, v - two numeric values or vectors of the same length at
-    #       which the copula will be computed. If 'u' is a list then the
-    #       the '$x' and '$y' elements will be used as 'u' and 'v'.
-    #       If 'u' is a two column matrix then the first column will
-    #       be used as 'u' and the the second as 'v'.
-    #   alpha - a numeric value or vector of named parameters as 
-    #       required by the copula specified by the variable 'type'.
-    #       If set to NULL, then the parameters will be taken as
-    #       specified by the function 'eparchParam'.
-    #   type - the type of the Archimedean copula. An integer or character
-    #       string selected from: "1", ..., "22".
-    #   output - a character string specifying how the output should
-    #       be formatted. By default a vector of the same length as 
-    #       'u' and 'v'. If specified as "list" then 'u' and 'v' are
-    #       expected to span a two-dimensional grid as outputted by the 
-    #       function 'grid2d' and the function returns a list with
-    #       elements '$x', 'y', and 'z' which can be directly used 
-    #       for example by 2D plotting functions.
-    #   alternative - Should the probability be computed alternatively
-    #       in a direct way from the probability formula or by default 
-    #       via the dependency function?  
-    
-    # Value:
-    #   returns a vector or list of probabilities depending on the
-    #   value of the "output" variable.
-    
-    # Example:
-    #   Diagonal Value: parchmCopula((0:10)/10)
-    #   persp(parchmCopula(u = grid2d(), output = "list"))
-    
-    # FUNCTION:
-    
-    # Copula:
-    if (alternative) {
-        ans = .parchm2Copula(u, v, alpha, type, output)
-    } else {
-        ans = .parchm1Copula(u, v, alpha, type, output)
-    }
-    
-    # Return Value:
-    ans
-}
-
-
-# ------------------------------------------------------------------------------
-
 
 parchmSlider =
 function(type = c("persp", "contour"), B = 10)
@@ -343,6 +125,9 @@ function(type = c("persp", "contour"), B = 10)
     #       value is infinite. By default this is set to 10.
     
     # FUNCTION:
+    
+    # Match Arguments:
+    type = match(type)
     
     # Plot:
     if (type[1] == "persp")
@@ -974,6 +759,9 @@ function(type = c("persp", "contour"), B = 10)
     #       value is infinite. By default this is set to 10.
     
     # FUNCTION:
+    
+    # Match Arguments:
+    type = match(type)
     
     # Plot:
     if (type == "persp")

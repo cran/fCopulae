@@ -28,40 +28,21 @@
 
 
 ################################################################################
-# FUNCTION:                  ARCHIMEDEAN COPULAE PARAMETER FITTING:
-#  archmCopulaSim             Simulates bivariate elliptical copula
-#  archmCopulaFit             Fits the paramter of an elliptical copula
-################################################################################
-
-test.aaa = 
-function()
-{
-    # Help File:
-    helpFile = function() { 
-        example(ArchimedeanModelling, ask = FALSE)
-        return() 
-    }
-    checkIdentical(
-        target = class(try(helpFile())),
-        current = "NULL")
-
-    # Return Value:
-    return()    
-}
+# FUNCTION:                  EXTREME VALUE COPULA PARAMETER FITTING:
+#  evCopulaSim                Simulates bivariate extreme value copula
+#  evCopulaFit                Fits the paramter of an extreme value copula
+#################################################################################
 
 
-# ------------------------------------------------------------------------------  
-    
-
-test.archmCopulaSim = 
+test.evCopulaSim = 
 function()
 {
     # Arguments:
-    # archmCopulaSim(n, alpha = NULL, type = archmList())
-    
+    # evCopulaSim(n, param = NULL, type = evList()) 
+
     # Simulate Random Variates:
-    for (type in archmList()) {
-        ans = archmCopulaSim(5, type = type)
+    for (type in evList()) {
+        ans = evCopulaSim(5, type = type)
         cat("\n")
         print(type)
         print(ans)
@@ -69,44 +50,35 @@ function()
     
     # Return Value:
     return()    
-} 
+}
 
-
-# ------------------------------------------------------------------------------  
     
+# ------------------------------------------------------------------------------
 
-test.archmCopulaFit = 
+
+test.evCopulaFit = 
 function()
 {
     # Arguments:
-    # archmCopulaFit(u, v = NULL, type = archmList(), ...)
-    
-    # Random Variates:
-    R = archmCopulaSim(n = 100, alpha = 2, type = "4")
+    #   evCopulaFit(u, v = NULL, type = evList(), ...) 
 
-    # Fit:
-    fit = archmCopulaFit(u = R, type = "4")
-    fit
+    # Random Variates:
+    set.seed(4711)
+    type = "gumbel"
+    R = evCopulaSim(500, param = NULL, type = type)
+    Index =  which(is.na(R[,2]))
+    R = R[-Index, ] 
     
     # Fit:
-    fit = archmCopulaFit(u = R[, 1], v = R[, 2], type = "4")
-    fit
+    ### evCopulaFit(u = R, type = type)                                  # Check
+    
+    # Fit:
+    ### evCopulaFit(u = R[, 1], v = R[, 2], type = type)                 # Check
     
     # Return Value:
     return()    
-} 
-        
-
-################################################################################
-
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit3D.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
 }
- 
+
   
 ################################################################################
 

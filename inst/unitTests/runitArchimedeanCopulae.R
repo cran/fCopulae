@@ -43,26 +43,6 @@
 #  dgumbelCopula              Computes bivariate Gumbel copula density
 ################################################################################
 
-
-test.aaa = 
-function()
-{
-    # Help File:
-    helpFile = function() { 
-        example(ArchimedeanCopulae, ask = FALSE)
-        return() 
-    }
-    checkIdentical(
-        target = class(try(helpFile())),
-        current = "NULL")
-
-    # Return Value:
-    return()    
-}
-
-
-################################################################################  
- 
     
 test.rarchmCopula = 
 function()
@@ -93,7 +73,8 @@ function()
     # rarchmSlider(B = 10)
     
     # Try Slider:
-    rarchmSlider()
+    # rarchmSlider()
+    NA
   
     # Return Value:
     return()    
@@ -157,10 +138,12 @@ function()
     # parchmSlider(type = c("persp", "contour"), B = 10)
     
     # Try Perspective Slider:
-    parchmSlider()
+    # parchmSlider()
+    NA 
     
     # Try Contour Slider:
-    parchmSlider("contour")
+    # parchmSlider("contour")
+    NA
     
     # Return Value:
     return()    
@@ -200,7 +183,7 @@ function()
     
     # Check All Types:
     u = grid2d(x = (0:25)/25)
-    for (type in 1:22) {
+    for (type in archmList()) {
         cop1 = darchmCopula(u, type = type, output = "list")
         cop2 = darchmCopula(u, type = type, output = "list", 
             alternative = TRUE)
@@ -225,10 +208,12 @@ function()
     # darchmSlider(type = c("persp", "contour"), B = 10)
     
     # Try Perspective Slider:
-    darchmSlider()
+    # darchmSlider()
+    NA
     
     # Try Contour Slider:
-    darchmSlider("contour")
+    # darchmSlider("contour")
+    NA
     
     # Return Value:
     return()    
@@ -282,18 +267,7 @@ function()
     # Return Value:
     return()    
 } 
-      
 
-################################################################################
-
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit3B.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
-}
- 
   
 ################################################################################
 

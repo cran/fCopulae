@@ -28,30 +28,26 @@
 
 
 ################################################################################
-# FUNCTION:                         GUMBEL COPULA:
-#  .rgumbelCopula
-#  .dgumbelCopula
-#  .pgumbelCopula
-# FUNCTION:                         MIXED GUMBEL-SURVIVALGUMBEL-NORMAL COPULA:
-#  .rgsgnormCopula
-#  .dgsgnormCopula
-#  .gsgnormCopulaFit
-# FUNCTION:                         NON-PARAMETRIC TAIL DEPENDECY ESTIMATOR:
-#  .cfgTDE
-# FUNCTION:                         COPULA FIT WITH NIG MARGINALS:
-#  .nigDependencyFit                 
-################################################################################
-
-
-
+# FUNCTION:                    GUMBEL COPULA:
+#  .rgumbelCopula               Generates fast Gumbel copula random variates
+#  .dgumbelCopula               Computes Gumbel copula probability
+#  .pgumbelCopula               Computes Gumbel copula probability
+# FUNCTION:                    MIXED GUMBEL-SURVIVALGUMBEL-NORMAL COPULA:
+#  .rgsgnormCopula              Generates G-SG-NORM copula random variates
+#  .dgsgnormCopula              Computes G-SG-NORM copula probability
+#  .gsgnormCopulaFit            Computes G-SG-NORM copula probability
+# FUNCTION:                    NON-PARAMETRIC TAIL DEPENDECY ESTIMATOR:
+#  .cfgTDE                      Estimates non-parametrically tail dependence
+# FUNCTION:                    COPULA FIT WITH NIG MARGINALS:
+#  .normDependencyFit           Estimates tail dependence with normal marginals
+#  .nigDependencyFit            Estimates tail dependence with NIG marginals  
+#  .ghtDependencyFit            Estimates tail dependence with GHT marginals                  
 ################################################################################
 
 
 test.mixedCopula =
 function()
-{
-    require(fCopulae)
-    
+{    
     # Simulated data:
     x = .rnormCopula(1000, rho = 0.7)
     .gsgnormCopulaFit(x, trace = TRUE)
@@ -102,25 +98,14 @@ function()
     # MPI 0.00000000 0.21421052 0.1640199 0.00000000 0.00000000 0.01209013
     # ALT 0.00000000 0.04785965 0.1522827 0.00000000 0.01209013 0.00000000
 
-    par(mfrow = c(1,1))
-    .assetsStarPlot(ans$lower, main = "Lower Tail Relations")
-    .assetsStarPlot(ans$upper, main = "Lower Tail Relations")
+    # par(mfrow = c(1,1))
+    # .assetsStarPlot(ans$lower, main = "Lower Tail Relations")
+    # .assetsStarPlot(ans$upper, main = "Lower Tail Relations")
 
     # Return Value:
     return()
 }
 
-
-################################################################################
-
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit6A.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
-}
- 
   
 ################################################################################
 

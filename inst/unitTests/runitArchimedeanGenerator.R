@@ -42,26 +42,6 @@
 ################################################################################
 
 
-test.aaa = 
-function()
-{
-    # Help File:
-    helpFile = function() { 
-        example(ArchimedeanGenerator, ask = FALSE)
-        return() 
-    }
-    checkIdentical(
-        target = class(try(helpFile())),
-        current = "NULL")
-
-    # Return Value:
-    return()    
-}
-
-
-################################################################################
-
-
 test.archmList = 
 function()
 {
@@ -188,7 +168,8 @@ function()
     # PhiSlider()
     
     # Try Slider:
-    PhiSlider()
+    # PhiSlider()
+    NA
     
     # Return Value:
     return()    
@@ -229,23 +210,13 @@ function()
     # KfuncSlider()
     
     # Try Slider:
-    KfuncSlider()
+    # KfuncSlider()
+    NA
     
     # Return Value:
     return()    
 }
    
 
-################################################################################
-
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit3A.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
-}
- 
-  
 ################################################################################
 

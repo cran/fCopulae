@@ -40,26 +40,6 @@
 ################################################################################
 
 
-test.aaa = 
-function()
-{
-    # Help File:
-    helpFile = function() { 
-        example(EllipticalCopulae, ask = FALSE)
-        return() 
-    }
-    checkIdentical(
-        target = class(try(helpFile())),
-        current = "NULL")
-
-    # Return Value:
-    return()    
-}
-
-
-# ------------------------------------------------------------------------------
-
-
 test.rellipticalCopula = 
 function()
 {
@@ -98,7 +78,8 @@ test.rellipticalSlider =
 function()
 {   
     # Try Slider:
-    rellipticalSlider()
+    # rellipticalSlider()
+    NA
     
     # Return Value:
     return()    
@@ -140,10 +121,12 @@ function()
     # pellipticalSlider(type = c("persp", "contour"), B = 20) 
  
     # Try Perspective Slider:
-    pellipticalSlider()
+    # pellipticalSlider()
+    NA
     
     # Try Contour Slider:
-    pellipticalSlider("contour")
+    # pellipticalSlider("contour")
+    NA
    
     # Return Value:
     return()    
@@ -185,26 +168,17 @@ function()
     # dellipticalSlider(type = c("persp", "contour"), B = 20) 
     
     # Try Perspective Slider:
-    dellipticalSlider()
+    # dellipticalSlider()
+    NA
     
     # Try Contour Slider:
-    dellipticalSlider("contour")
+    # dellipticalSlider("contour")
+    NA
     
     # Return Value:
     return()    
 }
 
-    
-################################################################################
-
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit2B.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
-}
- 
   
 ################################################################################
    

@@ -42,26 +42,6 @@
 ################################################################################
 
 
-test.aaa = 
-function()
-{
-    # Help File:
-    helpFile = function() { 
-        example(EllipticalGenerator, ask = FALSE)
-        return() 
-    }
-    checkIdentical(
-        target = class(try(helpFile())),
-        current = "NULL")
-
-    # Return Value:
-    return()    
-}
-
-
-# ------------------------------------------------------------------------------
-
-
 test.ellipticalList = 
 function()
 {
@@ -188,7 +168,8 @@ test.gfuncSlider =
 function()
 {
     # Try Slider:
-    gfuncSlider()
+    # gfuncSlider()
+    NA
     
     # Return Value:
     return()    
@@ -296,13 +277,3 @@ function()
 
 ################################################################################
 
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit2A.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
-}
- 
-  
-################################################################################

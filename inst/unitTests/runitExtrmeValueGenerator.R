@@ -28,48 +28,67 @@
 
 
 ################################################################################
-# FUNCTION                   KENDALL'S TAU AND SPEARMAN'S RHO:
-#  evTau                      Returns Kendall's tau for extreme value copulae
-#  evRho                      Returns Spearman's rho for extreme value copulae
-# FUNCTION:                  EXTREME VALUE COPULAE TAIL DEPENDENCE:
-#  evTailCoeff                Computes tail dependence for extreme value copulae
-#  evTailCoeffSlider          Plots extreme value tail dependence function
+# FUNCTION:                 EXTREME VALUE COPULAE PARAMETER:
+#  evList                    Returns list of implemented extreme value copulae
+#  evParam                   Sets Default parameters for an extreme value copula
+#  evRange                   Returns the range of valid parameter values
+#  evCheck                   Checks if parameters are in the valid range
+# FUNCTION:                 EXTREME VALUE COPULAE GENERATOR FUNCTION:
+#  Afunc                     Computes Dependence function
+#  AfuncSlider               Displays interactively dependence function
 #################################################################################
 
 
-test.aaa = 
+test.evList = 
 function()
 {
-    # Help File:
-    helpFile = function() { 
-        example(ExtremeValueCopula, ask = FALSE)
-        return() 
-    }
-    checkIdentical(
-        target = class(try(helpFile())),
-        current = "NULL")
+    # Arguments:
+    #   evList()
+    
+    # List:
+    evList()
+    # c("gumbel", "galambos", "husler.reiss", "tawn", "bb5")
 
     # Return Value:
     return()    
 }
 
+    
+# ------------------------------------------------------------------------------
 
-################################################################################
 
-
-test.evTau = 
+test.evParam = 
 function()
 {
     # Arguments:
-    #   evTau(param = NULL, type = evList(), alternative = FALSE)
+    #   evParam(type = evList())
     
-    # Tau:
+    # Parameters:
     for (type in evList()) {
-        ans = evTau(type = type)
         cat("\n")
-        print(ans)
+        print(unlist(evParam(type)))
     }
+
+    # Return Value:
+    return()    
+}
+
     
+# ------------------------------------------------------------------------------
+
+
+test.evRange = 
+function()
+{
+    # Arguments:
+    # evRange(type = evList()) 
+
+    # Range:
+    for (type in evList()) {
+        cat("\n")
+        print(evRange(type))
+    }
+
     # Return Value:
     return()    
 }
@@ -78,18 +97,17 @@ function()
 # ------------------------------------------------------------------------------
 
 
-test.evRho = 
+test.evCheck = 
 function()
 {
     # Arguments:
-    #   evRho(param = NULL, type = evList(), alternative = FALSE) 
+    # evCheck(type = evList()) 
     
-    # Rho:
+    # Check:
     for (type in evList()) {
-        ans = evRho(type = type)
         cat("\n")
-        print(type)
-        print(ans)
+        param = evParam(type)$param
+        print(evCheck(param))
     }
     
     # Return Value:
@@ -98,54 +116,44 @@ function()
 
    
 ################################################################################
-    
 
-test.evTailCoeff = 
+
+test.Afunc = 
 function()
 {
     # Arguments:
-    #   evTailCoeff(param = NULL, type = evList())
+    #   Afunc(x, param = NULL, type = evList()
     
-    # Tail Coefficient:
+    # Afunc:
+    x = (0:10)/10
     for (type in evList()) {
-        ans = evTailCoeff(type = type)
         cat("\n")
         print(type)
-        print(ans)
+        print(Afunc(x, type = type))
     }
     
     # Return Value:
     return()    
 }
 
-
+   
 # ------------------------------------------------------------------------------
-    
 
-test.evTailCoeffSlider = 
+    
+test.AfuncSlider = 
 function()
 {
     # Arguments:
-    #   evTailCoeffSlider(B = 10) 
+    #   AfuncSlider()
     
     # Try Slider:
-    evTailCoeffSlider()                                                   
+    # AfuncSlider()
+    NA
     
     # Return Value:
     return()    
 }
 
-        
-################################################################################
-
-
-if (FALSE) {
-    require(RUnit)
-    testResult <- runTestFile("C:/Rmetrics/SVN/trunk/fCopulae/tests/runit4C.R",
-        rngKind = "Marsaglia-Multicarry", rngNormalKind = "Inversion")
-    printTextProtocol(testResult)
-}
- 
   
 ################################################################################
 
