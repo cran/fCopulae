@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  ELLIPTICAL COPULAE DEPENDENCE MASURES:
@@ -43,9 +31,10 @@
 #  ellipticalRho              Computes Spearman's rho for elliptical copulae
 
 
-ellipticalTau =
-function(rho)
-{   # A function implemented by Diethelm Wuertz
+ellipticalTau <- 
+    function(rho)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Kendall's tau for elliptical copulae
@@ -75,9 +64,10 @@ function(rho)
 # ------------------------------------------------------------------------------
 
 
-.ellipticalRho =
-function(rho, param = NULL, type = ellipticalList(), subdivisions = 500)
-{   # A function implemented by Diethelm Wuertz
+.ellipticalRho <- 
+    function(rho, param = NULL, type = ellipticalList(), subdivisions = 500)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Spearman's rho for elliptical copulae
@@ -116,9 +106,10 @@ function(rho, param = NULL, type = ellipticalList(), subdivisions = 500)
 # ------------------------------------------------------------------------------
 
 
-ellipticalRho =
-function(rho, param = NULL, type = ellipticalList(), subdivisions = 500)
-{   # A function implemented by Diethelm Wuertz
+ellipticalRho <- 
+    function(rho, param = NULL, type = ellipticalList(), subdivisions = 500)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Spearman's rho for elliptical copulae
@@ -162,9 +153,10 @@ function(rho, param = NULL, type = ellipticalList(), subdivisions = 500)
 #  ellipticalTailPlot         Plots tail dependence function
 
 
-ellipticalTailCoeff =
-function(rho, param = NULL, type = c("norm", "cauchy", "t"))
-{   # A function implemented by Diethelm Wuertz
+ellipticalTailCoeff <- 
+    function(rho, param = NULL, type = c("norm", "cauchy", "t"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes tail dependence for elliptical copulae
@@ -232,10 +224,11 @@ function(rho, param = NULL, type = c("norm", "cauchy", "t"))
 # ------------------------------------------------------------------------------
 
 
-ellipticalTailPlot =
-function(param = NULL, type = c("norm", "cauchy", "t"), 
-tail = c("Lower", "Upper"))
-{   # A function implemented by Diethelm Wuertz
+ellipticalTailPlot <- 
+    function(param = NULL, type = c("norm", "cauchy", "t"), 
+    tail = c("Lower", "Upper"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Plots tail dependence for elliptical copulae

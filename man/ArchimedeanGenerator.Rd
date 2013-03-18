@@ -124,7 +124,9 @@ KfuncSlider(B = 5)
 
 
 \references{
-RB Nelson - An Introduction to Copulas
+
+    RB Nelson - An Introduction to Copulas
+    
   }
 
 \examples{  

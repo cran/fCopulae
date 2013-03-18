@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  ARCHIMEDEAN COPULAE RANDOM VARIATES:
@@ -48,14 +36,10 @@
 
 
 ################################################################################
-#  rarchmCopula               Generates Archimedean copula random variates 
-#  .r1Copula                  Generates rv's for copulae No 1
-#  .r2Copula                  Generates rv's for copulae No 2
- 
-
-rarchmCopula =
-function(n, alpha = NULL, type = archmList())
-{   # A function implemented by Diethelm Wuertz
+ rarchmCopula <-
+    function(n, alpha = NULL, type = archmList())
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Generates Archimedean copula random variate
@@ -97,11 +81,10 @@ function(n, alpha = NULL, type = archmList())
 
 
 # ------------------------------------------------------------------------------
-
-
-.rNo1Copula =
-function(n, alpha = NULL, alternative = FALSE, doplot = FALSE)
-{   # A function implemented by Diethelm Wuertz
+.rNo1Copula <- 
+    function(n, alpha = NULL, alternative = FALSE, doplot = FALSE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Generates rv's for copula No 1
@@ -143,11 +126,10 @@ function(n, alpha = NULL, alternative = FALSE, doplot = FALSE)
 
 
 # ------------------------------------------------------------------------------
-
-
-.rNo2Copula = 
-function(n, alpha = NULL, doplot = FALSE)
-{   # A function implemented by Diethelm Wuertz
+.rNo2Copula <-  
+    function(n, alpha = NULL, doplot = FALSE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # HERE IS SOMETHING WRONG !!!!
     
@@ -183,16 +165,11 @@ function(n, alpha = NULL, doplot = FALSE)
 
 
 ################################################################################
-# FUNCTION:                  ARCHIMEDEAN COPULAE PROBABILITY:
-#  parchmCopula               Computes Archimedean copula probability 
-#  .parchm1Copula              Utility Function
-#  .parchm2Copula              Utility Function
-
-
-parchmCopula = 
-function(u = 0.5, v = u, alpha = NULL, type = archmList(),
-output = c("vector", "list"), alternative = FALSE )
-{   # A function implemented by Diethelm Wuertz
+parchmCopula <- 
+    function(u = 0.5, v = u, alpha = NULL, type = archmList(),
+    output = c("vector", "list"), alternative = FALSE )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula probability
@@ -232,9 +209,9 @@ output = c("vector", "list"), alternative = FALSE )
     
     # Copula:
     if (alternative) {
-        ans = .parchm2Copula(u, v, alpha, type, output)
+        ans <- .parchm2Copula(u, v, alpha, type, output)
     } else {
-        ans = .parchm1Copula(u, v, alpha, type, output)
+        ans <- .parchm1Copula(u, v, alpha, type, output)
     }
     
     # Return Value:
@@ -243,12 +220,11 @@ output = c("vector", "list"), alternative = FALSE )
 
 
 # ------------------------------------------------------------------------------
-
-
-.parchm1Copula =
-function(u = 0.5, v = u, alpha = NULL, type = archmList(), 
-output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.parchm1Copula <-
+    function(u = 0.5, v = u, alpha = NULL, type = archmList(), 
+    output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Compute Maximum Extreme Value Copulae
@@ -346,12 +322,11 @@ output = c("vector", "list") )
 
 
 # ------------------------------------------------------------------------------
-
-
-.parchm2Copula = 
-function(u = 0.5, v = u, alpha = NULL, type = archmList(),
-output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.parchm2Copula <- 
+    function(u = 0.5, v = u, alpha = NULL, type = archmList(),
+    output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     
@@ -538,16 +513,11 @@ output = c("vector", "list") )
 
 
 ################################################################################
-# FUNCTION:                  ARCHIMEDEAN COPULAE DENSITY:
-#  darchmCopula               Computes Archimedean copula density 
-#  .darchm1Copula              Utility Function
-#  .darchm2Copula              Utility Function
-
-
-darchmCopula = 
-function(u = 0.5, v = u, alpha = NULL, type = archmList(),
-output = c("vector", "list"), alternative = FALSE )
-{   # A function implemented by Diethelm Wuertz
+darchmCopula <- 
+    function(u = 0.5, v = u, alpha = NULL, type = archmList(),
+    output = c("vector", "list"), alternative = FALSE )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula density
@@ -598,12 +568,11 @@ output = c("vector", "list"), alternative = FALSE )
 
 
 # ------------------------------------------------------------------------------
-
-
 .darchm1Copula = 
-function(u = 0.5, v = u, alpha = NULL, type = archmList(), output = 
-c("vector", "list")) 
-{   # A function implemented by Diethelm Wuertz
+    function(u = 0.5, v = u, alpha = NULL, type = archmList(), output = 
+    c("vector", "list")) 
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Density of Maximum Extreme Value Copulae
@@ -663,12 +632,11 @@ c("vector", "list"))
 
 
 # ------------------------------------------------------------------------------
-
-
-.darchm2Copula = 
-function(u = 0.5, v = u, alpha = NULL, type = archmList(), output = 
-c("vector", "list")) 
-{   # A function implemented by Diethelm Wuertz
+.darchm2Copula <- 
+    function(u = 0.5, v = u, alpha = NULL, type = archmList(), output = 
+    c("vector", "list")) 
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Extreme Value Copulae
@@ -898,11 +866,10 @@ c("vector", "list"))
 
 
 ################################################################################
-
-
-rgumbelCopula =
-function(n = 100, alpha = 2) 
-{   # A function implemented by Diethelm Wuertz
+rgumbelCopula <- 
+    function(n = 100, alpha = 2) 
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Generates fast gumbel random variates
@@ -929,11 +896,10 @@ function(n = 100, alpha = 2)
 
 
 # ------------------------------------------------------------------------------
-
-
-pgumbelCopula =
-function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
-{   # A function implemented by Diethelm Wuertz
+pgumbelCopula <-
+    function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes bivariate Gumbel copula probability 
@@ -950,11 +916,10 @@ function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
 
 
 # ------------------------------------------------------------------------------
-
-
-dgumbelCopula =
-function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
-{   # A function implemented by Diethelm Wuertz
+dgumbelCopula <- 
+    function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes bivariate Gumbel copula density
@@ -962,13 +927,10 @@ function(u = 0.5, v = u, alpha = 2, output = c("vector", "list"))
     # FUNCTION:
     
     # Bivariate Gumbel Density:
-    ans = darchmCopula (u, v, alpha, type = "4", output = output, 
+    ans <- darchmCopula (u, v, alpha, type = "4", output = output, 
         alternative = FALSE) 
     
     # Return Value:
     ans
 }
-
-
-################################################################################
 

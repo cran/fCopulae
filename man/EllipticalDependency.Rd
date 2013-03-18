@@ -170,7 +170,7 @@ ellipticalTailPlot(param = NULL, type = c("norm", "cauchy", "t"),
    u = grid2d(x = (0:25)/25)
    pellipticalCopula(u, rho = 0.75, param = 4, 
      type = "t", output = "list")
-   d = dellipticalCopula(u, rho = 0.75, param = 4, 
+   d <- dellipticalCopula(u, rho = 0.75, param = 4, 
      type = "t", output = "list")   
    persp(d, theta = -40, phi = 30, col = "steelblue")
    
@@ -191,7 +191,7 @@ ellipticalTailPlot(param = NULL, type = c("norm", "cauchy", "t"),
 ## ellipticalCopulaSim -
 ## ellipticalCopulaSim -
    # Simualtion and Parameter Fitting:
-   rv = ellipticalCopulaSim(n = 100, rho = 0.75)
+   rv <- ellipticalCopulaSim(n = 100, rho = 0.75)
    ellipticalCopulaFit(rv)
 }
 

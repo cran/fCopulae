@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  ARCHIMEDEAN COPULAE PARAMETER FITTING:
@@ -40,22 +28,23 @@
 #  archmCopulaFit             Fits the paramter of an elliptical copula
 
 
-archmCopulaSim = 
-function (n, alpha = NULL, type = archmList()) 
-{   # A function implemented by Diethelm Wuertz
+archmCopulaSim <-  
+    function (n, alpha = NULL, type = archmList()) 
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Simulates bivariate elliptical Copula
     
     # Match Arguments:
-    type = match.arg(type)
-    Type = as.integer(type)
+    type <- match.arg(type)
+    Type <- as.integer(type)
       
     # Settings:
     if (is.null(alpha)) alpha = archmParam(type)$param
     
     # Random Variates:
-    ans = rarchmCopula(n = n, alpha = alpha, type = type) 
+    ans <- rarchmCopula(n = n, alpha = alpha, type = type) 
 
     # Control:
     control = list(alpha = alpha[[1]], copula = "archm", type = type)
@@ -69,9 +58,10 @@ function (n, alpha = NULL, type = archmList())
 # ------------------------------------------------------------------------------
 
     
-archmCopulaFit =
-function(u, v = NULL, type = archmList(), ...)
-{   # A function implemented by Diethelm Wuertz
+archmCopulaFit <- 
+    function(u, v = NULL, type = archmList(), ...)
+{   
+    # A function implemented by Diethelm Wuertz
     
     # Description:
     #   Fits the paramter of an elliptical copula

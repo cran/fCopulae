@@ -1,6 +1,6 @@
-\name{CopulaeClass}
+\name{CopulaClass}
 
-\alias{CopulaeClass}
+\alias{CopulaClass}
 
 \alias{fCOPULA}
 \alias{fCOPULA-class}
@@ -10,7 +10,7 @@
 \alias{pfrechetCopula}
 
 
-\title{Bivariate Copulae Class}
+\title{Bivariate Copula Class}
 
 
 \description{
@@ -38,7 +38,6 @@
 
 pfrechetCopula(u = 0.5, v = u, type = c("m", "pi", "w"), 
     output = c("vector", "list"))
-    
 }
 
 
@@ -131,12 +130,13 @@ pfrechetCopula(u = 0.5, v = u, type = c("m", "pi", "w"),
 ## fCOPULA -
    getClass("fCOPULA")
    
-## pcopula -
+## pfrechet -
    # The Frechet Copula - m:
    pfrechetCopula(0.5)
    pfrechetCopula(0.25, 0.75)
    pfrechetCopula(runif(5))
    
+## grid2d - 
    grid2d()
    pfrechetCopula(grid2d())
 }

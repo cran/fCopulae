@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  KENDALL'S TAU AND SPEARMAN'S RHO:
@@ -53,9 +41,10 @@
 #  .archmTail                  Utility Function
 
 
-archmTau =
-function(alpha = NULL, type = archmList(), lower = 1.0e-10)
-{   # A function implemented by Diethelm Wuertz
+archmTau <- 
+    function(alpha = NULL, type = archmList(), lower = 1.0e-10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Kendall's tau by integration for Archimedean copulae
@@ -97,9 +86,10 @@ function(alpha = NULL, type = archmList(), lower = 1.0e-10)
 # ------------------------------------------------------------------------------
     
 
-.archmTau = 
-function(alpha = NULL, type = archmList(), lower = 1.0e-10)
-{   # A function implemented by Diethelm Wuertz
+.archmTau <-  
+    function(alpha = NULL, type = archmList(), lower = 1.0e-10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Kendall's tau by integration for Archimedean copulae
@@ -107,8 +97,8 @@ function(alpha = NULL, type = archmList(), lower = 1.0e-10)
     # FUNCTION:
     
     # Type:
-    type = match.arg(type)
-    Type = as.integer(type)
+    type <- match.arg(type)
+    Type <- as.integer(type)
     
     # Alpha:
     if (is.null(alpha)) alpha = archmParam(type)$param
@@ -210,9 +200,10 @@ function(alpha = NULL, type = archmList(), lower = 1.0e-10)
 # ------------------------------------------------------------------------------
 
 
-.archmTauRange =
-function(type = archmList())
-{   # A function implemented by Diethelm Wuertz
+.archmTauRange <- 
+    function(type = archmList())
+{   
+    # A function implemented by Diethelm Wuertz
 
     # FUNCTION:
     
@@ -246,9 +237,9 @@ function(type = archmList())
         22,     NA,    NA ), byrow = TRUE, ncol = 3 )
         
     # Result:
-    ans = range[Type, ][-1]
-    names(ans) = c("tau.lower", "tau.upper")
-    attr(ans, "control")<-c(type = type)
+    ans <- range[Type, ][-1]
+    names(ans) <- c("tau.lower", "tau.upper")
+    attr(ans, "control") <- c(type = type)
     
     # Return Value:
     ans
@@ -258,9 +249,10 @@ function(type = archmList())
 # ------------------------------------------------------------------------------
 
 
-.archm2Tau = 
-function (alpha = NULL, type = archmList(), lower = 1e-6) 
-{   # A function implemented by Diethelm Wuertz
+.archm2Tau <- 
+    function (alpha = NULL, type = archmList(), lower = 1e-6) 
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Joe's [1997] alternative expression:
     
@@ -291,10 +283,11 @@ function (alpha = NULL, type = archmList(), lower = 1e-6)
 # ------------------------------------------------------------------------------
 
 
-archmRho =
-function(alpha = NULL, type = archmList(), method = c("integrate2d", "adapt"),
-error = 1.0e-5)
-{   # A function implemented by Diethelm Wuertz
+archmRho <- 
+    function(alpha = NULL, type = archmList(), 
+    method = c("integrate2d", "adapt"), error = 1.0e-5)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Spearman's Rho by integration for Archimedean copulae
@@ -339,10 +332,11 @@ error = 1.0e-5)
 # ------------------------------------------------------------------------------
 
 
-.archmRho =
-function(alpha = NULL, type = archmList(), method = c("integrate2d", "adapt"),
-error = 1.0e-5)
-{   # A function implemented by Diethelm Wuertz
+.archmRho <-
+    function(alpha = NULL, type = archmList(), 
+    method = c("integrate2d", "adapt"), error = 1.0e-5)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Spearman's rho by integration for Archimedean copulae
@@ -353,11 +347,11 @@ error = 1.0e-5)
     # FUNCTION:
     
     # Match Arguments:
-    method = match.arg(method)
+    method <- match.arg(method)
     
     # Type:
-    type = match.arg(type)
-    Type = as.integer(type)
+    type <- match.arg(type)
+    Type <- as.integer(type)
     
     # Alpha:
     if (is.null(alpha)) alpha = archmParam(type)$param
@@ -405,7 +399,7 @@ error = 1.0e-5)
 # ------------------------------------------------------------------------------
 
 
-# .archmGamma =
+# .archmGamma <- 
 # function(alpha = 0.5, type = archmList())
 # {   # A function implemented by Diethelm Wuertz
 # 
@@ -449,9 +443,10 @@ error = 1.0e-5)
 #  archmTailPlot              Plots Archimedean tail dependence function
 
 
-archmTailCoeff =
-function(alpha = NULL, type = archmList())
-{   # A function implemented by Diethelm Wuertz
+archmTailCoeff <-
+    function(alpha = NULL, type = archmList())
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Tail Dependence for Archimedean copulae
@@ -484,9 +479,10 @@ function(alpha = NULL, type = archmList())
 # ------------------------------------------------------------------------------
 
 
-archmTailPlot =
-function(alpha = NULL, type = archmList(), tail = c("Upper", "Lower"))
-{   # A function implemented by Diethelm Wuertz
+archmTailPlot <-
+    function(alpha = NULL, type = archmList(), tail = c("Upper", "Lower"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Plots tail dependence for elliptical copulae

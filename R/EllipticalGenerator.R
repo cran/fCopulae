@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port:
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  UTILITY FUNCTIONS:
@@ -53,9 +41,10 @@
 #  ellipticalCheck            Checks if rho is in the valid range
 
 
-ellipticalList =
-function()
-{   # A function implemented by Diethelm Wuertz
+ellipticalList <- 
+    function()
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Returns list of implemented elliptical copulae
@@ -75,9 +64,10 @@ function()
 # ------------------------------------------------------------------------------
 
 
-ellipticalParam =
-function(type = ellipticalList())
-{   # A function implemented by Diethelm Wuertz
+ellipticalParam <-
+    function(type = ellipticalList())
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Sets default parameters for elliptical copulae
@@ -153,9 +143,10 @@ function(type = ellipticalList())
 # ------------------------------------------------------------------------------
 
 
-ellipticalRange =
-function(type = ellipticalList())
-{   # A function implemented by Diethelm Wuertz
+ellipticalRange <- 
+    function(type = ellipticalList())
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Returns the range of valid alpha values
@@ -191,9 +182,10 @@ function(type = ellipticalList())
 # ------------------------------------------------------------------------------
 
 
-ellipticalCheck =
-function(rho = 0.75, param = NULL, type = ellipticalList())
-{   # A function implemented by Diethelm Wuertz
+ellipticalCheck <- 
+    function(rho = 0.75, param = NULL, type = ellipticalList())
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Checks if alpha is in the valid range
@@ -245,9 +237,10 @@ function(rho = 0.75, param = NULL, type = ellipticalList())
 #  .qlogisticTable            Table for logistic quantiles
 
 
-gfunc =
-function(x, param = NULL, type = ellipticalList())
-{   # A function implemented by Diethelm Wuertz
+gfunc <- 
+    function(x, param = NULL, type = ellipticalList())
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Generator function for elliptical distributions
@@ -384,9 +377,10 @@ function(x, param = NULL, type = ellipticalList())
 
 
 
-gfuncSlider =
-function(B = 10)
-{   # A function implemented by Diethelm Wuertz
+gfuncSlider <- 
+    function(B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Slider for generator function, density and probability
@@ -523,10 +517,11 @@ function(B = 10)
 # ------------------------------------------------------------------------------
 
 
-.pelliptical =
-function(q, param = NULL, type = ellipticalList(),
-alternative = TRUE, subdivisions = 100)
-{   # A function implemented by Diethelm Wuertz
+.pelliptical <- 
+    function(q, param = NULL, type = ellipticalList(),
+    alternative = TRUE, subdivisions = 100)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Probability function for univariate elliptical distributions
@@ -610,10 +605,11 @@ alternative = TRUE, subdivisions = 100)
 # ------------------------------------------------------------------------------
 
 
-.delliptical =
-function(x, param = NULL, type = ellipticalList(), alternative = TRUE,
-subdivisions = 100)
-{   # A function implemented by Diethelm Wuertz
+.delliptical <- 
+    function(x, param = NULL, type = ellipticalList(), alternative = TRUE,
+    subdivisions = 100)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Density function for univariate elliptical distributions
@@ -698,9 +694,10 @@ subdivisions = 100)
 # ------------------------------------------------------------------------------
 
 
-.qelliptical =
-function(p, param = NULL, type = ellipticalList(), alternative = TRUE)
-{   # A function implemented by Diethelm Wuertz
+.qelliptical <- 
+    function(p, param = NULL, type = ellipticalList(), alternative = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Quantile function for univariate elliptical distributions
@@ -789,9 +786,10 @@ function(p, param = NULL, type = ellipticalList(), alternative = TRUE)
 # ------------------------------------------------------------------------------
 
 
-.qlogistic =
-function(p)
-{   # A function implemented by Diethelm Wuertz
+.qlogistic <- 
+    function(p)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Fast Quantile function for the logistic distribution
@@ -828,9 +826,10 @@ function(p)
 # ------------------------------------------------------------------------------
 
 
-.qlogisticData =
-function (dump = FALSE )
-{   # A function implemented by Diethelm Wuertz
+.qlogisticData <- 
+    function (dump = FALSE )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # FUNCTION:
 
@@ -872,8 +871,8 @@ function (dump = FALSE )
 # ------------------------------------------------------------------------------
 
 
-.qlogisticTable =
-structure(list(
+.qlogisticTable <- 
+    structure(list(
     X = c(
     -3.28961095698868, -3.08838952917050, -2.96495324742154,
     -2.87441959067841, -2.80235793855428, -2.74216585623189, -2.69027685632636,

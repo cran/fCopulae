@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port:
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  ELLIPTICAL COPULAE RANDOM DEVIATES:
@@ -65,9 +53,10 @@
 #  .rtCopula                  Generates Student-t copula random variate
 
 
-rellipticalCopula =
-function(n, rho = 0.75, param = NULL, type = c("norm", "cauchy", "t"))
-{   # A function implemented by Diethelm Wuertz
+rellipticalCopula <-
+    function(n, rho = 0.75, param = NULL, type = c("norm", "cauchy", "t"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula probability
@@ -131,9 +120,10 @@ function(n, rho = 0.75, param = NULL, type = c("norm", "cauchy", "t"))
 # ------------------------------------------------------------------------------
 
 
-rellipticalSlider =
-function(B = 100)
-{   # A function implemented by Diethelm Wuertz
+rellipticalSlider <- 
+    function(B = 100)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively perspective plots of random variates
@@ -144,7 +134,7 @@ function(B = 100)
     par(mfrow = c(1, 1))
 
     # Internal Function:
-    refresh.code = function(...)
+    refresh.code <-  function(...)
     {
         # Startup Counter:
         .counter <- getRmetricsOptions(".counter") + 1
@@ -201,9 +191,10 @@ function(B = 100)
 # ------------------------------------------------------------------------------
 
 
-.rnormCopula =
-function(n, rho = 0.75)
-{   # A function implemented by Diethelm Wuertz
+.rnormCopula <- 
+    function(n, rho = 0.75)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Generates normal copula random variate
@@ -214,7 +205,7 @@ function(n, rho = 0.75)
     # FUNCTION:
 
     # Use: X = .rnorm2d(n, rho) or alternatively:
-    X = .rnorm2d(n = n, rho = rho)
+    X = fMultivar:::.rnorm2d(n = n, rho = rho)
 
     # Generate
     Z <- NULL
@@ -228,9 +219,10 @@ function(n, rho = 0.75)
 # ------------------------------------------------------------------------------
 
 
-.rcauchyCopula =
-function(n, rho = 0.75)
-{   # A function implemented by Diethelm Wuertz
+.rcauchyCopula <-
+    function(n, rho = 0.75)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Generates Student-t copula random variate
@@ -251,9 +243,10 @@ function(n, rho = 0.75)
 # ------------------------------------------------------------------------------
 
 
-.rtCopula =
-function(n, rho = 0.75, nu = 4)
-{   # A function implemented by Diethelm Wuertz
+.rtCopula <- 
+    function(n, rho = 0.75, nu = 4)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Generates Student-t copula random variate
@@ -288,10 +281,11 @@ function(n, rho = 0.75, nu = 4)
 #  .pellipticalContourSlider  Interactive contour plots of probability
 
 
-pellipticalCopula =
-function(u = 0.5, v = u, rho = 0.75, param = NULL, type = ellipticalList(),
-output = c("vector", "list"), border = TRUE)
-{   # A function implemented by Diethelm Wuertz
+pellipticalCopula <- 
+    function(u = 0.5, v = u, rho = 0.75, param = NULL, type = ellipticalList(),
+    output = c("vector", "list"), border = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula probability
@@ -323,8 +317,8 @@ output = c("vector", "list"), border = TRUE)
     # FUNCTION:
 
     # Match Arguments:
-    type = match.arg(type)
-    output = match.arg(output)
+    type <- match.arg(type)
+    output <- match.arg(output)
 
     # Settings:
     subdivisions = 100
@@ -348,21 +342,21 @@ output = c("vector", "list"), border = TRUE)
     # Specical Copulae:
     if (type == "norm") {
         if (rho == -1) {
-            ans = pfrechetCopula(u = u, v = v, type = "m", output = output)
+            ans <- pfrechetCopula(u = u, v = v, type = "m", output = output)
             return(ans)
         } else if (rho == +1) {
-            ans = pfrechetCopula(u = u, v = v, type = "w", output = output)
+            ans <- pfrechetCopula(u = u, v = v, type = "w", output = output)
             return(ans)
         } else {
             ans = .pnormCopula(u = u, v = v, rho = rho, output = output)
             return(ans)
         }
     } else if (type == "cauchy") {
-        ans = .pcauchyCopula(u = u, v = v, rho = rho, output = output)
+        ans <- .pcauchyCopula(u = u, v = v, rho = rho, output = output)
         return(ans)
     } else if (type == "t") {
         if (is.null(param)) param = 4
-        ans = .ptCopula(u = u, v = v, rho = rho, nu = param, output = output)
+        ans <- .ptCopula(u = u, v = v, rho = rho, nu = param, output = output)
         return(ans)
     }
 
@@ -432,9 +426,10 @@ output = c("vector", "list"), border = TRUE)
 # ------------------------------------------------------------------------------
 
 
-pellipticalSlider =
-function(type = c("persp", "contour"), B = 20)
-{   # A function implemented by Diethelm Wuertz
+pellipticalSlider <-
+    function(type = c("persp", "contour"), B = 20)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively plots of probability
@@ -469,9 +464,10 @@ function(type = c("persp", "contour"), B = 20)
 # ------------------------------------------------------------------------------
 
 
-.pnormCopula =
-function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.pnormCopula <-
+    function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes normal copula probability
@@ -530,9 +526,10 @@ function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.pcauchyCopula =
-function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.pcauchyCopula <- 
+    function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Student-t copula probability
@@ -543,7 +540,7 @@ function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
     # FUNCTION:
 
     # Cauchy Probability:
-    C.uv = .ptCopula(u = u, v = v, rho = rho, nu = 1, output = output)
+    C.uv <- .ptCopula(u = u, v = v, rho = rho, nu = 1, output = output)
     attr(C.uv, "control") <- c(rho = rho)
 
     # Return Value:
@@ -554,9 +551,10 @@ function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.ptCopula =
-function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.ptCopula <-
+    function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Student-t copula probability
@@ -567,7 +565,7 @@ function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
     # FUNCTION:
 
     # Match Arguments:
-    output = match.arg(output)
+    output <- match.arg(output)
 
     # Settings:
     type = "t"
@@ -581,7 +579,7 @@ function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
     }
 
     # Copula Probability:
-    C.uv = pt2d(qt(u, df = nu), qt(v, df = nu), rho = rho, nu = nu)
+    C.uv <- pt2d(qt(u, df = nu), qt(v, df = nu), rho = rho, nu = nu)
     names(C.uv) = NULL
 
     # Simulates Max function:
@@ -615,9 +613,10 @@ function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.pellipticalCopulaGrid =
-function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
-{   # A function implemented by Diethelm Wuertz
+.pellipticalCopulaGrid <-
+    function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes elliptical copula probability on a 2d grid
@@ -650,7 +649,7 @@ function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
         # This is much slower !
         IJ = grid2d(1:(N+1))
         X = cbind(IJ$x, IJ$y)
-        fun = function(X, C) sum(C[1:X[1], 1:X[2]])
+        fun =  function(X, C) sum(C[1:X[1], 1:X[2]])
         C.uv = apply(X, MARGIN=1, FUN = fun, C = c.uv$z)
         C.uv = matrix(C.uv, byrow = TRUE, ncol = N+1) / N^2
     }
@@ -677,9 +676,10 @@ function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
 # ------------------------------------------------------------------------------
 
 
-.pellipticalCopulaDiag =
-function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
-{   # A function implemented by Diethelm Wuertz
+.pellipticalCopulaDiag <-
+    function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes elliptical diagonal cross section copula probability
@@ -720,9 +720,10 @@ function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
 # ------------------------------------------------------------------------------
 
 
-.pellipticalPerspSlider =
-function(B = 20)
-{   # A function implemented by Diethelm Wuertz
+.pellipticalPerspSlider <-
+    function(B = 20)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively perspective plots of probability
@@ -800,9 +801,10 @@ function(B = 20)
 # ------------------------------------------------------------------------------
 
 
-.pellipticalContourSlider =
-function(B = 20)
-{   # A function implemented by Diethelm Wuertz
+.pellipticalContourSlider <- 
+    function(B = 20)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively perspective plots of probability
@@ -815,7 +817,7 @@ function(B = 20)
     par(mfrow = c(1, 1))
 
     # Internal Function:
-    refresh.code = function(...)
+    refresh.code =  function(...)
     {
         # Startup Counter:
         .counter <- getRmetricsOptions(".counter") + 1
@@ -889,10 +891,11 @@ function(B = 20)
 #  .dellipticalContourSlider  Interactive contour plots of density
 
 
-dellipticalCopula =
-function(u = 0.5, v = u, rho = 0.75, param = NULL, type = ellipticalList(),
+dellipticalCopula <-
+    function(u = 0.5, v = u, rho = 0.75, param = NULL, type = ellipticalList(),
 output = c("vector", "list"), border = TRUE)
-{   # A function implemented by Diethelm Wuertz
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula density
@@ -981,9 +984,10 @@ output = c("vector", "list"), border = TRUE)
 # ------------------------------------------------------------------------------
 
 
-dellipticalSlider =
-function(type = c("persp", "contour"), B = 20)
-{   # A function implemented by Diethelm Wuertz
+dellipticalSlider <- 
+    function(type = c("persp", "contour"), B = 20)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively plots of density
@@ -1018,9 +1022,10 @@ function(type = c("persp", "contour"), B = 20)
 # ------------------------------------------------------------------------------
 
 
-.dnormCopula =
-function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.dnormCopula <-
+    function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes normal copula density
@@ -1069,9 +1074,10 @@ function(u = 0.5, v = u, rho = 0.75, output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.dtCopula =
-function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.dtCopula <- 
+    function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Student-t copula density
@@ -1120,9 +1126,10 @@ function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.dcauchyCopula =
-function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.dcauchyCopula <- 
+    function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Student-t copula density
@@ -1144,9 +1151,10 @@ function(u = 0.5, v = u, rho = 0.75, nu = 4, output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.dellipticalCopulaGrid =
-function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
-{   # A function implemented by Diethelm Wuertz
+.dellipticalCopulaGrid <- 
+    function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula density
@@ -1211,9 +1219,10 @@ function(N, rho = 0.75, param = NULL, type = ellipticalList(), border = TRUE)
 # ------------------------------------------------------------------------------
 
 
-.dellipticalPerspSlider =
-function(B = 20)
-{   # A function implemented by Diethelm Wuertz
+.dellipticalPerspSlider <- 
+    function(B = 20)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively perspective plots of density
@@ -1224,7 +1233,7 @@ function(B = 20)
     par(mfrow = c(1, 1))
 
     # Internal Function:
-    refresh.code = function(...)
+    refresh.code =  function(...)
     {
         # Startup Counter:
         .counter <- getRmetricsOptions(".counter") + 1
@@ -1300,9 +1309,10 @@ function(B = 20)
 # ------------------------------------------------------------------------------
 
 
-.dellipticalContourSlider =
-function(B = 20)
-{   # A function implemented by Diethelm Wuertz
+.dellipticalContourSlider <-
+    function(B = 20)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively perspective plots of density
@@ -1313,7 +1323,7 @@ function(B = 20)
     par(mfrow = c(1, 1))
 
     # Internal Function:
-    refresh.code = function(...)
+    refresh.code =  function(...)
     {
         # Startup Counter:
         .counter <- getRmetricsOptions(".counter") + 1

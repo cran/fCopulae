@@ -202,10 +202,10 @@ dellipticalSlider(type = c("persp", "contour"), B = 20)
 
 ## [rp]ellipticalCopula -   
    # Student-t Copula Probability and Density:
-   u = grid2d(x = (0:25)/25)
+   u <- grid2d(x = (0:25)/25)
    pellipticalCopula(u, rho = 0.75, param = 4, 
      type = "t", output = "list")
-   d = dellipticalCopula(u, rho = 0.75, param = 4, 
+   d <- dellipticalCopula(u, rho = 0.75, param = 4, 
      type = "t", output = "list")   
    persp(d, theta = -40, phi = 30, col = "steelblue")
    
@@ -226,7 +226,7 @@ dellipticalSlider(type = c("persp", "contour"), B = 20)
 ## ellipticalCopulaSim -
 ## ellipticalCopulaSim -
    # Simualtion and Parameter Fitting:
-   rv = ellipticalCopulaSim(n = 100, rho = 0.75)
+   rv <- ellipticalCopulaSim(n = 100, rho = 0.75)
    ellipticalCopulaFit(rv)
 }
 

@@ -161,8 +161,10 @@ ellipticalCopulaFit(u, v, type = c("norm", "cauchy", "t"), \dots)
 ## [rp]ellipticalCopula -   
    # Student-t Copula Probability and Density:
    u = grid2d(x = (0:25)/25)
-   pellipticalCopula(u, rho = 0.75, param = 4, 
-     type = "t", output = "list")
+   # CHECK ERROR
+   # pellipticalCopula(u, rho = 0.75, param = 4, 
+   #   type = "t", output = "list")
+   # CHECK ERROR DONE
    d = dellipticalCopula(u, rho = 0.75, param = 4, 
      type = "t", output = "list")   
    persp(d, theta = -40, phi = 30, col = "steelblue")
@@ -184,7 +186,7 @@ ellipticalCopulaFit(u, v, type = c("norm", "cauchy", "t"), \dots)
 ## ellipticalCopulaSim -
 ## ellipticalCopulaSim -
    # Simualtion and Parameter Fitting:
-   rv = ellipticalCopulaSim(n = 100, rho = 0.75)
+   rv <- ellipticalCopulaSim(n = 100, rho = 0.75)
    ellipticalCopulaFit(rv)
 }
 

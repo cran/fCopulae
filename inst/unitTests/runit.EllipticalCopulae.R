@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file 
-
 
 ################################################################################
 # FUNCTION:                  ELLIPTICAL COPULAE RANDOM DEVIATES:
@@ -41,26 +29,26 @@
 
 
 test.rellipticalCopula = 
-function()
+    function()
 {
     # Random Number Generator:
-    R = rellipticalCopula(1000, type = "norm")
+    R <- rellipticalCopula(1000, type = "norm")
     plot(R, pch = 19, col = "steelblue", main = "norm")
     grid()
     
-    R = rellipticalCopula(1000, type = "cauchy")
+    R <- rellipticalCopula(1000, type = "cauchy")
     plot(R, pch = 19, col = "steelblue", main = "cauchy")
     grid()
     
-    R = rellipticalCopula(1000, type = "t") 
+    R <- rellipticalCopula(1000, type = "t") 
     plot(R, pch = 19, col = "steelblue", main = "t-default")
     grid()
     
-    R = rellipticalCopula(1000, param = c(nu = 3), type = "t")
+    R <- rellipticalCopula(1000, param = c(nu = 3), type = "t")
     plot(R, pch = 19, col = "steelblue", main = "t3")
     grid()
     
-    R = rellipticalCopula(1000, param = 3, type = "t")
+    R <- rellipticalCopula(1000, param = 3, type = "t")
     plot(R, pch = 19, col = "steelblue", main = "t3")
     grid()
     
@@ -74,8 +62,8 @@ function()
 # ------------------------------------------------------------------------------
 
 
-test.rellipticalSlider = 
-function()
+test.rellipticalSlider <-  
+    function()
 {   
     # Try Slider:
     # rellipticalSlider()
@@ -89,8 +77,8 @@ function()
 ################################################################################
 
 
-test.pellipticalCopula = 
-function()
+test.pellipticalCopula <- 
+    function()
 { 
     # Arguments ?
     # pellipticalCopula(u = 0.5, v = u, rho = 0.75, param = NULL, 
@@ -99,8 +87,8 @@ function()
     # Use Default Settings:
     par (mfrow = c(1, 1))
     for (type in ellipticalList()) {
-        UV = grid2d()
-        p = pellipticalCopula(u = UV, rho = 0.75, type = type, output = "list")   
+        UV <- grid2d()
+        p <- pellipticalCopula(u = UV, rho = 0.75, type = type, output = "list")   
         print(type)
         persp(p, main = type, theta = -40, phi = 30, col = "steelblue", 
             ps = 9, xlab = "u", ylab = "v", zlab = "C")

@@ -121,9 +121,7 @@ evCopulaFit(u, v = NULL, type = evList(), \dots)
    
 ## AfuncSlider -
    # Generator, try:
-   if (require(tcltk)) {
-     AfuncSlider()
-   }
+   \dontrun{AfuncSlider()}
 }
 
 

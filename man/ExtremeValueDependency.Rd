@@ -134,9 +134,7 @@ evTailCoeffSlider(B = 10)
    
 ## AfuncSlider -
    # Generator, try:
-   if (require(tcltk)) {
-     AfuncSlider()
-   }
+   \dontrun{AfuncSlider()}
 }
 
 

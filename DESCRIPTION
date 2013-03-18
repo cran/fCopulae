@@ -1,22 +1,23 @@
 Package: fCopulae
-Version: 3000.79
-Revision: 5463
+Title: Rmetrics - Bivariate Dependence Structures with Copulae
 Date: 2013-03-18
-Title: Rmetrics - Dependence Structures with Copulas
-Author: Diethelm Wuertz and many others, see the SOURCE file
-Depends: R (>= 2.4.0), sn, methods, timeDate, timeSeries, fBasics (>=
-        2100.78)
-Suggests: RUnit, tcltk
-Maintainer: Yohan Chalabi <yohan.chalabi@rmetrics.org>
-Description: Environment for teaching "Financial Engineering and
-        Computational Finance"
-Note: Several parts are still preliminary and may be changed in the
-        future. this typically includes function and argument names, as
-        well as defaults for arguments and return values.
+Version: 3011.81
+Author: Rmetrics Core Team,
+	Diethelm Wuertz [aut],
+	Tobias Setz [cre]
+	Yohan Chalabi [ctb]
+Maintainer: Tobias Setz <tobias.setz@rmetrics.org>
+Description: Environment for teaching
+	"Financial Engineering and Computational Finance".
+Depends: R (>= 2.15.1), timeDate, timeSeries, fBasics, fMultivar
+Suggests: methods, RUnit, tcltk, mvtnorm, sn
+Note: SEVERAL PARTS ARE STILL PRELIMINARY AND MAY BE CHANGED IN THE
+        FUTURE. THIS TYPICALLY INCLUDES FUNCTION AND ARGUMENT NAMES, AS
+        WELL AS DEFAULTS FOR ARGUMENTS AND RETURN VALUES.
 LazyData: yes
 License: GPL (>= 2)
-URL: http://www.rmetrics.org
-Packaged: 2013-03-18 05:17:49 UTC; yankee
-NeedsCompilation: yes
+URL: https://www.rmetrics.org
+Packaged: 2014-09-16 14:55:28 UTC; Tobi
+NeedsCompilation: no
 Repository: CRAN
-Date/Publication: 2013-03-18 07:43:14
+Date/Publication: 2014-09-17 15:56:52

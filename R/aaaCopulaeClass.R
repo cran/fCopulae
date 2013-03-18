@@ -14,20 +14,8 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port:
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
 
-
-################################################################################
+###############################################################################
 # FUNCTION:                 COPULA SPECIFICATION:
 #  fCOPULA                   S4 class representation
 #  show                      S4 print method for copula specification
@@ -37,15 +25,15 @@
 #  .copulaRho                Spearman's rho by integration for "ANY" copula
 ################################################################################
 
-# moved to zzz.R
-# setRmetricsOptions(.counter = NA)
-
 
 ################################################################################
-# Specifying and creating copula objects
+
 
 
 setClass("fCOPULA",
+    # Description:
+    #   Specifying and creating copula objects
+    
     # Copula Representation:
     representation(
         call = "call",
@@ -61,7 +49,8 @@ setClass("fCOPULA",
 
 setMethod("show", "fCOPULA",
     function(object)
-{   # A function implemented by Diethelm Wuertz
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Print and Summary method for fCOPULA
@@ -103,10 +92,11 @@ setMethod("show", "fCOPULA",
 # Frechet Copulae:
 
 
-pfrechetCopula =
-function(u = 0.5, v = u, type = c("m", "pi", "w"),
-output = c("vector", "list"))
-{   # A function implemented by Diethelm Wuertz
+pfrechetCopula <-
+    function(u = 0.5, v = u, type = c("m", "pi", "w"),
+    output = c("vector", "list"))
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes Frechet copula probability
@@ -186,10 +176,11 @@ output = c("vector", "list"))
 
 
 .copulaRho =
-function(rho = NULL, alpha = NULL, param = NULL,
-family = c("elliptical", "archm", "ev", "archmax"),
-type = NULL, error = 1e-3, ...)
-{   # A function implemented by Diethelm Wuertz
+    function(rho = NULL, alpha = NULL, param = NULL,
+    family = c("elliptical", "archm", "ev", "archmax"),
+    type = NULL, error = 1e-3, ...)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Spearman's rho by integration for "ANY" copula

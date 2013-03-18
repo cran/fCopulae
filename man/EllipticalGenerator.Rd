@@ -172,13 +172,12 @@ gfuncSlider(B = 10)
 
 ## gfunc - 
    # Generator Function:    
-   gfunc(x = (0:10)/10, param = 2, type = "t")
+   gfunc(x <- (0:10)/10, param = 2, type = "t")
    
 ## gfuncSlider -
    # Try:
-   if (require(tcltk)) {   
-   gfuncSlider()
-   }
+   \dontrun{
+   gfuncSlider()}
 }
 
 

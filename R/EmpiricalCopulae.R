@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  EMPIRICAL COPULAE PROBABILIY:
@@ -46,8 +34,8 @@
 #  pempiricalCopula           Computes empirical copula probability
 
 
-pempiricalCopula =
-function(u, v, N = 10)
+pempiricalCopula <-
+    function(u, v, N = 10)
 {   # A function implemented by Diethelm Wuertz
 
     # Description
@@ -89,9 +77,10 @@ function(u, v, N = 10)
 #  dempiricalCopula           Computes empirical copula density
 
 
-dempiricalCopula =
-function(u, v, N = 10)
-{   # A function implemented by Diethelm Wuertz
+dempiricalCopula <-
+    function(u, v, N = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description
     #   Computes the empirical copula probability
@@ -134,9 +123,10 @@ function(u, v, N = 10)
 #  .Debye1
 
 
-.Debye =
-function(x, k = 1) 
-{   # A function implemented by Diethelm Wuertz
+.Debye <- 
+    function(x, k = 1) 
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Returns the value of the Debye function of order k
@@ -171,9 +161,10 @@ function(x, k = 1)
 # ------------------------------------------------------------------------------
 
 
-.Debye1 = 
-function(x, k = 1)
-{   # A function implemented by Diethelm Wuertz
+.Debye1 <-
+    function(x, k = 1)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # FUNCTION:
     
@@ -205,8 +196,8 @@ function(x, k = 1)
 #  .dmoCopula
 
 
-.pmoCopula = 
-function(u = 0.5, v = u, alpha = NULL)
+.pmoCopula <- 
+    function(u = 0.5, v = u, alpha = NULL)
 {
     if (is.null(alpha)) alpha = c(0.5, 0.5)
     alpha1 = alpha[1]
@@ -222,8 +213,8 @@ function(u = 0.5, v = u, alpha = NULL)
 # ------------------------------------------------------------------------------
 
 
-.dmoCopula = 
-function(u = 0.5, v = u, alpha = NULL)
+.dmoCopula <- 
+    function(u = 0.5, v = u, alpha = NULL)
 {
     if (is.null(alpha)) alpha = c(0.5, 0.5)
     alpha1 = alpha[1]

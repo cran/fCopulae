@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston,
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port:
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  EXTREME VALUE COPULAE RANDOM VARIATES:
@@ -54,8 +42,8 @@
 #  revSlider                  Displays interactively plots of random variates
 
 
-revCopula =
-function(n, param = NULL, type = evList())
+revCopula <-
+    function(n, param = NULL, type = evList())
 {
     # Default Settings:
     subintervals = 100
@@ -94,9 +82,10 @@ function(n, param = NULL, type = evList())
 # ------------------------------------------------------------------------------
 
 
-revSlider =
-function(B = 10)
-{   # A function implemented by Diethelm Wuertz
+revSlider <- 
+    function(B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively perspective plots of random variates
@@ -165,10 +154,11 @@ function(B = 10)
 #  .pevPerspSlider             Interactive perspective plots of EV probability
 
 
-pevCopula =
-function(u = 0.5, v = u, param = NULL, type = evList(),
-output = c("vector", "list"), alternative = FALSE )
-{   # A function implemented by Diethelm Wuertz
+pevCopula <-
+    function(u = 0.5, v = u, param = NULL, type = evList(),
+    output = c("vector", "list"), alternative = FALSE )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula probability
@@ -225,9 +215,10 @@ output = c("vector", "list"), alternative = FALSE )
 # ------------------------------------------------------------------------------
 
 
-pevSlider =
-function(type = c("persp", "contour"), B = 10)
-{   # A function implemented by Diethelm Wuertz
+pevSlider <- 
+    function(type = c("persp", "contour"), B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively plots of probability
@@ -257,10 +248,11 @@ function(type = c("persp", "contour"), B = 10)
 # ------------------------------------------------------------------------------
 
 
-.pev1Copula =
-function(u = 0.5, v = u, param = NULL, type = evList(),
-output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.pev1Copula <- 
+    function(u = 0.5, v = u, param = NULL, type = evList(),
+    output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula probability via dependency function
@@ -325,10 +317,11 @@ output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.pev2Copula =
-function(u = 0.5, v = u, param = NULL, type = evList(),
-output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.pev2Copula <- 
+    function(u = 0.5, v = u, param = NULL, type = evList(),
+    output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula probability directly
@@ -439,9 +432,10 @@ output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.pevContourSlider =
-function(B = 10)
-{   # A function implemented by Diethelm Wuertz
+.pevContourSlider <- 
+    function(B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively contour plots of probability
@@ -506,9 +500,10 @@ function(B = 10)
 # ------------------------------------------------------------------------------
 
 
-.pevPerspSlider =
-function(B = 10)
-{   # A function implemented by Diethelm Wuertz
+.pevPerspSlider <- 
+    function(B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively perspective plots of probability
@@ -581,10 +576,11 @@ function(B = 10)
 #  .devPerspSlider             Interactive perspective plots of EV density
 
 
-devCopula =
-function(u = 0.5, v = u, param = NULL, type = evList(),
-output = c("vector", "list"), alternative = FALSE )
-{   # A function implemented by Diethelm Wuertz
+devCopula <- 
+    function(u = 0.5, v = u, param = NULL, type = evList(),
+    output = c("vector", "list"), alternative = FALSE )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula density from dependence function
@@ -643,8 +639,9 @@ output = c("vector", "list"), alternative = FALSE )
 
 
 devSlider =
-function(type = c("persp", "contour"), B = 10)
-{   # A function implemented by Diethelm Wuertz
+    function(type = c("persp", "contour"), B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively plots of probability
@@ -674,10 +671,11 @@ function(type = c("persp", "contour"), B = 10)
 # ------------------------------------------------------------------------------
 
 
-.dev1Copula =
-function(u = 0.5, v = u, param = NULL, type = evList(),
-output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.dev1Copula <- 
+    function(u = 0.5, v = u, param = NULL, type = evList(),
+    output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula density from dependence function
@@ -745,10 +743,11 @@ output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.dev2Copula =
-function(u = 0.5, v = u, param = NULL, type = evList(),
-output = c("vector", "list") )
-{   # A function implemented by Diethelm Wuertz
+.dev2Copula <- 
+    function(u = 0.5, v = u, param = NULL, type = evList(),
+    output = c("vector", "list") )
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Computes extreme value copula density directly
@@ -951,9 +950,10 @@ output = c("vector", "list") )
 # ------------------------------------------------------------------------------
 
 
-.devContourSlider =
-function(B = 10)
-{   # A function implemented by Diethelm Wuertz
+.devContourSlider <- 
+    function(B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively contour plots of density
@@ -1019,9 +1019,10 @@ function(B = 10)
 # ------------------------------------------------------------------------------
 
 
-.devPerspSlider =
-function(B = 10)
-{   # A function implemented by Diethelm Wuertz
+.devPerspSlider <-
+    function(B = 10)
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Displays interactively contour plots of density

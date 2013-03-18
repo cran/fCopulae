@@ -14,18 +14,6 @@
 # Free Foundation, Inc., 59 Temple Place, Suite 330, Boston, 
 # MA  02111-1307  USA
 
-# Copyrights (C)
-# for this R-port: 
-#   1999 - 2007, Diethelm Wuertz, GPL
-#   Diethelm Wuertz <wuertz@itp.phys.ethz.ch>
-#   info@rmetrics.org
-#   www.rmetrics.org
-# for the code accessed (or partly included) from other R-ports:
-#   see R's copyright and license files
-# for the code accessed (or partly included) from contributed R-ports
-# and other sources
-#   see Rmetrics's copyright file
-
 
 ################################################################################
 # FUNCTION:                  ELLIPTICAL COPULAE PARAMETER FITTING:
@@ -40,9 +28,10 @@
 #  ellipticalCopulaFit        Fits the paramter of an elliptical copula
 
 
-ellipticalCopulaSim = 
-function (n, rho = 0.75, param = NULL, type = c("norm", "cauchy", "t")) 
-{   # A function implemented by Diethelm Wuertz
+ellipticalCopulaSim <- 
+    function (n, rho = 0.75, param = NULL, type = c("norm", "cauchy", "t")) 
+{   
+    # A function implemented by Diethelm Wuertz
 
     # Description:
     #   Simulates bivariate elliptical Copula
@@ -94,9 +83,10 @@ function (n, rho = 0.75, param = NULL, type = c("norm", "cauchy", "t"))
 # ------------------------------------------------------------------------------
 
     
-ellipticalCopulaFit =
-function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
-{   # A function implemented by Diethelm Wuertz
+ellipticalCopulaFit <- 
+    function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
+{   
+    # A function implemented by Diethelm Wuertz
     
     # Description:
     #   Fits the paramter of an elliptical copula
@@ -126,13 +116,18 @@ function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
     # Estimate Rho from Kendall's tau for all types of Copula:
     tau = cor(x = U, y = V, method = "kendall") #[1, 2]
     Rho = rho = sin((pi*tau/2))
+    
+    # Specify Bounds to be < and > instead of <= and >=
+    upper <- 1-.Machine$double.eps
+    lower <- -upper
      
     # Estimate "norm" Copula:
     if (type == "norm") {
         fun = function(x) {
             -mean( log(.dnormCopula(u = U, v = V, rho = x)) )
         }
-        fit = nlminb(start = rho, objective = fun, lower = -1, upper = 1, ...)
+        fit = nlminb(start = rho, objective = fun, lower = lower, upper = upper, 
+                     control = list(trace=TRUE), ...)
     }
     
     # Estimate "cauchy" Copula:
@@ -140,7 +135,7 @@ function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
         fun = function(x) {
             -mean( log(.dcauchyCopula(u = U, v = V, rho = x)) ) 
         }
-        fit = nlminb(start = rho, objective = fun, lower = -1, upper = 1, ...)
+        fit = nlminb(start = rho, objective = fun, lower = lower, upper = upper, ...)
     }
     
     # Estimate "t" Copula:
@@ -149,7 +144,7 @@ function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
             -mean( log(.dtCopula(u = U, v = V, rho = x[1], nu = x[2])) ) 
         }
         fit = nlminb(start = c(rho = rho, nu = 4), objective = fun, 
-             lower = c(-1, 1), upper = c(1, Inf), ...)
+             lower = c(lower, upper), upper = c(upper, Inf), ...)
         fit$Nu = 4
     }
     
@@ -160,7 +155,7 @@ function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
             -mean( log(dellipticalCopula(u = U, v = V, ...)) ) 
         }
         fit = nlminb(start = c(), objective = fun, 
-             lower = c(rho = -1, NA), upper = c(rho = 1, NA), ...)
+             lower = c(rho = lower, NA), upper = c(rho = upper, NA), ...)
     }
     
     # Estimate "laplace" Copula:
@@ -170,7 +165,7 @@ function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
             -mean( log(dellipticalCopula(u = U, v = V, ...)) ) 
         }
         fit = nlminb(start = c(), objective = fun, 
-             lower = c(rho = -1, NA), upper = c(rho = 1, NA), ...)
+             lower = c(rho = lower, NA), upper = c(rho = upper, NA), ...)
     }
     
     # Estimate "kotz" Copula:
@@ -180,7 +175,7 @@ function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
             -mean( log(dellipticalCopula(u = U, v = V, ...)) ) 
         }
         fit = nlminb(start = c(), objective = fun, 
-             lower = c(rho = -1, NA), upper = c(rho = 1, NA), ...)
+             lower = c(rho = lower, NA), upper = c(rho = upper, NA), ...)
     }
     
     # Estimate "epower" Copula:
@@ -190,7 +185,7 @@ function(u, v = NULL, type = c("norm", "cauchy", "t"), ...)
             -mean( log(dellipticalCopula(u = U, v = V, ...)) ) 
         }
         fit = nlminb(start = c(), objective = fun, 
-             lower = c(rho = -1, NA), upper = c(rho = 1, NA), ...)
+             lower = c(rho = lower, NA), upper = c(rho = upper, NA), ...)
     }
     
     # Keep Start Value:

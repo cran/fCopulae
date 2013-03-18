@@ -117,9 +117,7 @@ AfuncSlider()
    
 ## AfuncSlider -
    # Generator, try:
-   if (require(tcltk)) {
-     AfuncSlider()
-   }
+   \dontrun{AfuncSlider()}
 }
 
 
