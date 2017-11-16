@@ -1,23 +1,22 @@
 Package: fCopulae
 Title: Rmetrics - Bivariate Dependence Structures with Copulae
-Date: 2013-03-18
-Version: 3011.81
-Author: Rmetrics Core Team,
-	Diethelm Wuertz [aut],
-	Tobias Setz [cre]
+Date: 2017-11-12
+Version: 3042.82
+Author: Diethelm Wuertz [aut],
+	Tobias Setz [cre],
 	Yohan Chalabi [ctb]
-Maintainer: Tobias Setz <tobias.setz@rmetrics.org>
-Description: Environment for teaching
-	"Financial Engineering and Computational Finance".
+Maintainer: Tobias Setz <tobias.setz@live.com>
+Description: Provides a  collection of functions to 
+	manage, to investigate and to analyze bivariate financial returns by  
+	Copulae. Included are the families of Archemedean, Elliptical, 
+	Extreme Value, and Empirical Copulae.
 Depends: R (>= 2.15.1), timeDate, timeSeries, fBasics, fMultivar
+Imports: grDevices, graphics, stats
 Suggests: methods, RUnit, tcltk, mvtnorm, sn
-Note: SEVERAL PARTS ARE STILL PRELIMINARY AND MAY BE CHANGED IN THE
-        FUTURE. THIS TYPICALLY INCLUDES FUNCTION AND ARGUMENT NAMES, AS
-        WELL AS DEFAULTS FOR ARGUMENTS AND RETURN VALUES.
 LazyData: yes
 License: GPL (>= 2)
 URL: https://www.rmetrics.org
-Packaged: 2014-09-16 14:55:28 UTC; Tobi
 NeedsCompilation: no
+Packaged: 2017-11-16 17:28:33 UTC; Tobias Setz
 Repository: CRAN
-Date/Publication: 2014-09-17 15:56:52
+Date/Publication: 2017-11-16 21:52:15 UTC
