@@ -1,5 +1,5 @@
 069404d67832a534f33ba999e3b2d142 *ChangeLog
-8637f69fd582c1ade43fda85bf921c32 *DESCRIPTION
+c68167d424066d9bf28d476901194b8a *DESCRIPTION
 9d365d9b1fff0b1a443e7a7bcdade222 *NAMESPACE
 b224c94b7b4cadb927e4bb7f10fb39d3 *R/ArchimedeanCopulae.R
 2ecff1b4ef03dca8bd390416e70d7728 *R/ArchimedeanDependency.R
@@ -52,13 +52,13 @@ b6c70ab404057c7d41615ab1827d57f8 *man/00fCopulae-package.Rd
 0ed0a793f6c4f19edffd48e634de74f2 *man/ArchimedeanDependency.Rd
 34e50b7a0e7f34c599ec2455c0b1ea1b *man/ArchimedeanGenerator.Rd
 24e3120bde46175dd44cec2bec363f13 *man/ArchimedeanModelling.Rd
-d3f26dc082ab56570acfc56440cb9977 *man/EllipticalCopulae.Rd
-3c880bfdb1a891eaa25ebc3274b0c48f *man/EllipticalDependency.Rd
-b161fed0d027b34779f64e1f3ee2d074 *man/EllipticalGenerator.Rd
+2f31dc62ac9fc4607a935c0b7ca8af79 *man/EllipticalCopulae.Rd
+ff0441ac8f168bb6032243af29737a51 *man/EllipticalDependency.Rd
+3cb9708247c68983ddfc8b02fe6cf774 *man/EllipticalGenerator.Rd
 160fddf4faf3ea6c218d01c28a5b6107 *man/EllipticalModelling.Rd
 ab3c21c844982a45425329cbc5a72c36 *man/EmpiricalCopulae.Rd
-4b34f841d13c4014f42ab07789fc8492 *man/ExtremeValueCopulae.Rd
-39ba0f048a8c1fac7e8116e7227cf101 *man/ExtremeValueDependency.Rd
+7ea7f3cd54e2f80cddbd5ada672e6805 *man/ExtremeValueCopulae.Rd
+7fed36f79e52e62318335bed37d746ca *man/ExtremeValueDependency.Rd
 041c895cf8dd9f181fb9ff7b4ed15875 *man/ExtremeValueGenerator.Rd
 2f6c7b7aa20fb72e73764713a3e2d3b7 *man/ExtremeValueModelling.Rd
 f90fde38f6c413e80f56f77fa13d065d *man/aaaCopulaClass.Rd
