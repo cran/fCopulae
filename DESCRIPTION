@@ -1,11 +1,12 @@
 Package: fCopulae
 Title: Rmetrics - Bivariate Dependence Structures with Copulae
-Date: 2017-11-12
-Version: 3042.82.1
+Date: 2022-07-14
+Version: 4021.84
 Author: Diethelm Wuertz [aut],
-	Tobias Setz [cre],
-	Yohan Chalabi [ctb]
-Maintainer: Tobias Setz <tobias.setz@live.com>
+	Tobias Setz [aut],
+	Yohan Chalabi [ctb],
+	Paul Smith [cre]
+Maintainer: Paul Smith <paul@waternumbers.co.uk>
 Description: Provides a  collection of functions to 
 	manage, to investigate and to analyze bivariate financial returns by  
 	Copulae. Included are the families of Archemedean, Elliptical, 
@@ -13,10 +14,12 @@ Description: Provides a  collection of functions to
 Depends: R (>= 2.15.1), timeDate, timeSeries, fBasics, fMultivar
 Imports: grDevices, graphics, stats
 Suggests: methods, RUnit, tcltk, mvtnorm, sn
-LazyData: yes
 License: GPL (>= 2)
 URL: https://www.rmetrics.org
-NeedsCompilation: no
-Packaged: 2020-03-07 10:25:19 UTC; hornik
 Repository: CRAN
-Date/Publication: 2020-03-07 11:06:14 UTC
+Repository/R-Forge/Project: rmetrics
+Repository/R-Forge/Revision: 6224
+Repository/R-Forge/DateTimeStamp: 2022-07-19 14:29:47
+Date/Publication: 2022-07-20 08:20:02 UTC
+NeedsCompilation: no
+Packaged: 2022-07-19 14:52:09 UTC; rforge
