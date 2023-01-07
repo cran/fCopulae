@@ -1,10 +1,10 @@
-456eba40e6c30f71057b679c81f707d1 *ChangeLog
-2121663662b4e49bafd66ca0adac1678 *DESCRIPTION
+098b86eccc9d2c314ead0418bf493955 *ChangeLog
+3cf99cf568e2d3aa9331568723af9898 *DESCRIPTION
 9d365d9b1fff0b1a443e7a7bcdade222 *NAMESPACE
-b224c94b7b4cadb927e4bb7f10fb39d3 *R/ArchimedeanCopulae.R
+b8d5908432d8c6a53460e80c917489a6 *R/ArchimedeanCopulae.R
 2ecff1b4ef03dca8bd390416e70d7728 *R/ArchimedeanDependency.R
-cb195a3002bdeaf47dcf8213e0086f58 *R/ArchimedeanGenerator.R
-df46e935e2e8fe9c0b8389a11398c745 *R/ArchimedeanModelling.R
+f1d90931e92891488195c69aa258a21a *R/ArchimedeanGenerator.R
+da9998da89be52ffc8a917768c86511b *R/ArchimedeanModelling.R
 d1448727aeb5c2bfb70ea051f3d29b14 *R/ArchimedeanSlider.R
 6bab46620fac6baf5493156b3c0874a9 *R/EllipticalCopulae.R
 d648d61dfc570f419e48ea47a03779aa *R/EllipticalDependency.R
@@ -19,8 +19,8 @@ dccbc5d81da8cecb6c2d24a43a0488f0 *R/ExtremeValueModelling.R
 cc66b4093da5eaf07f5692f598fed2a3 *R/aaaCopulaeEnv.R
 03c202578e38501cae6fb4e1c599c7e2 *R/zzz.R
 5073775e2caf6351d1b1e15479b1c73c *inst/unitTests/Makefile
-b3dfb205136831d39e558c232cdb025a *inst/unitTests/runTests.R
-7b2fb68b07b1bcb3031af0bbaae9401d *inst/unitTests/runit.ArchimedeanCopulae.R
+15d9197eafec4b5e5bda5249e9e3f8dc *inst/unitTests/runTests.R
+ae0c5c6d8359da416c80a253ed6c0f75 *inst/unitTests/runit.ArchimedeanCopulae.R
 c621d826877c3bfa872a49a1065d47f1 *inst/unitTests/runit.ArchimedeanDependency.R
 c88b95efbb2d4bc75b1ebd9df8aeb8a3 *inst/unitTests/runit.ArchimedeanGenerator.R
 d38397d2fc0dc6eb89002fefaf079088 *inst/unitTests/runit.ArchimedeanModelling.R

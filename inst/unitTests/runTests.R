@@ -1,5 +1,8 @@
 pkg <- "fCopulae"
 
+initial_opt <- options(warn = 1)
+on.exit(initial_opt)
+
 if(require("RUnit", quietly = TRUE))
 {
 
@@ -11,7 +14,9 @@ if(require("RUnit", quietly = TRUE))
 
     ## Define tests
     testSuite <- defineTestSuite(name = paste(pkg, "unit testing"),
-                                 dirs = path)
+                                 dirs = path,
+                                 rngKind = "Mersenne-Twister",
+                                 rngNormalKind = "Inversion")
 
     if(interactive()) {
         cat("Now have RUnit Test Suite 'testSuite' for package '",
